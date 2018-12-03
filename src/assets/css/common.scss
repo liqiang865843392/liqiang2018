@@ -1,0 +1,54 @@
+$browser-default-font-size: 16px !default;//变量的值可以根据自己需求定义
+@function pxTorem($px){
+  @return $px / $browser-default-font-size * 1rem;
+}
+html{
+  font-size: $browser-default-font-size;
+  background-color: #1b2852;
+  height:100%!important;
+  //height:800px;
+}
+*{margin: 0; padding: 0;box-sizing:border-box;}
+body{
+  position: relative;
+  overflow: hidden;
+  height: 100%!important;
+  //height:800px;
+  margin: 0; padding: 0;
+}
+
+/*iview样式*/
+.ivu-menu-dark{
+  background-color: #191A2C!important;
+  box-shadow: inset 0 -1px 0 0 rgba(81,130,228,.15);
+}
+.ivu-layout{
+  background-color: #191A2C!important;
+}
+/*折叠面板样式*/
+.ivu-collapse>.ivu-collapse-item{
+  border-top:none!important;
+}
+.ivu-collapse-simple{
+  background-color:transparent!important;
+}
+.ivu-collapse{
+  background-color:transparent!important;
+  border:none!important;
+}
+.ivu-collapse>.ivu-collapse-item.ivu-collapse-item-active>.ivu-collapse-header{
+  border-bottom:none!important;
+}
+.ivu-collapse-content{
+  background-color:transparent!important;
+}
+.ivu-collapse>.ivu-collapse-item>.ivu-collapse-header{
+  color:rgba(255, 255, 255, 0.7)!important;
+  font-weight: bold;
+}
+.ivu-collapse>.ivu-collapse-item>.ivu-collapse-header>i{
+    margin-right:5px!important;
+}
+.ivu-spin-fix{
+  background-color:transparent!important;
+}
