@@ -1,33 +1,40 @@
 <template>
-    <!--<table>-->
-    <!--<tr>-->
     <div class="edit-data">
-        <span>图例数据：</span>
-        <!--<td v-for="(item,index) in legend_data">-->
-        <div class="item-content">
-            <Tag  class="tag" v-for="(item,index) in legend_data" :name="item.value"  closable @on-close="handleClose(legend_data,index)" >
-                <input  v-model="item.value" :readonly="item.readonly" @click="_edit(legend_data,item)" />
-            </Tag>
-            <Button class="add" icon="ios-add" type="dashed" size="small" @click="handleAdd(legend_data)">添加标签</Button>
-        </div>
-
+        <table>
+            <tr>
+                <td>Name</td>
+                <td>Age</td>
+                <td>Address</td>
+            </tr>
+            <tr v-for="(item,index) in legend_data" :key="index">
+                <td>{{item.value}}</td>
+                <td>{{item.value}}</td>
+                <td>{{item.value}}</td>
+            </tr>
+            <!--<tr>-->
+                <!--<td>Jim Green</td>-->
+                <!--<td>24</td>-->
+                <!--<td>London No</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Joe Black</td>-->
+                <!--<td>30</td>-->
+                <!--<td>Sydney No.</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Jon Snow</td>-->
+                <!--<td>26</td>-->
+                <!--<td>Ottawa No</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>Jon Snow</td>-->
+                <!--<td>26</td>-->
+                <!--<td>Ottawa No</td>-->
+            <!--</tr>-->
+        </table>
     </div>
 
-    <!--</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-    <!--<td>X轴数据</td>-->
-    <!--<td v-for="(item,index) in xAxis_data">-->
-    <!--<input  v-model="item.value" :readonly="item.readonly"  @click="_edit(xAxis_data,item)" />-->
-    <!--</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-    <!--<td>Y轴数据</td>-->
-    <!--<td v-for="(item,index) in yAxis_data">-->
-    <!--<input  v-model="item.value" :readonly="item.readonly"  @click="_edit(xAxis_data,item)" />-->
-    <!--</td>-->
-    <!--</tr>-->
-    <!--</table>-->
+
 </template>
 <script>
     export default {
@@ -42,73 +49,31 @@
                 legend_data: [
                     {
                         value: 'legend_a',
-                        readonly:true
+                        is_input:false
                     },
                     {
                         value: 'legend_b',
-                        readonly:true
+                        is_input:false
                     },
                     {
                         value: 'legend_c',
-                        readonly:true
+                        is_input:false
                     },
                     {
                         value: 'legend_d',
-                        readonly:true
+                        is_input:false
                     },
                     {
                         value: 'legend_e',
-                        readonly:true
+                        is_input:false
                     },
                 ],
-                xAxis_data:[
-                    {
-                        value: 'xAxis_a',
-                        readonly:true
-                    },
-                    {
-                        value: 'xAxis_b',
-                        readonly:true
-                    },
-                    {
-                        value: 'xAxis_c',
-                        readonly:true
-                    },
-                    {
-                        value: 'xAxis_d',
-                        readonly:true
-                    },
-                    {
-                        value: 'xAxis_e',
-                        readonly:true
-                    },
-                ],
-                yAxis_data:[
-                    {
-                        value: 'yAxis_a',
-                        readonly:true
-                    },
-                    {
-                        value: 'yAxis_b',
-                        readonly:true
-                    },
-                    {
-                        value: 'yAxis_c',
-                        readonly:true
-                    },
-                    {
-                        value: 'yAxis_d',
-                        readonly:true
-                    },
-                    {
-                        value: 'yAxis_e',
-                        readonly:true
-                    },
-                ]
             }
         },
         computed:{
-
+            get_table_data(){
+                return  this.table_data ? this.table_data : [];
+            }
         },
         methods:{
             _edit(data,item){
@@ -151,45 +116,34 @@
 </style>
 <style scoped  lang="scss">
     .edit-data{
-        width:100%;
-        display: flex;
-        /*justify-content:flex-start;*/
-        /*flex-wrap: wrap;*/
-        span{
-            display: inline-block;
-            width:80px;
-            height:28px;
-            line-height:28px;
-            color:#5182e4;
-            /*font-weight: bold;*/
-            font-size:16px;
-            margin-right:10px;
-        }
-        .item-content{
-            width:88%;
-            /*height:auto;*/
-            display: flex;
-            /*justify-content:flex-start;*/
-            flex-wrap: wrap;
-            /*align-items: flex-start;*/
-            .tag{
-                /*float: left;*/
-                /*display: block;*/
-                input{
-                    width: 50px;
-                    height:22px;
-                    background-color: transparent;
-                    border:none;
-                    outline:none;
-                    color:rgba(81,130,228,1);
+        margin-top:8px;
+        table{
+            border: 1px solid rgba(81,129,228,.1);
+            width:100%;text-align:center;border-collapse:collapse;
+            tr:first-child{
+                height: 20px;
+                white-space: nowrap;
+                overflow: hidden;
+                background-color:rgba(81,129,228,.1);
+                color:rgba(81,129,228,.9);
+            }
+            tr{
+                td,th{
+                    border-right: 1px solid rgba(81,129,228,.1);
+                    height: 20px;
+                    box-sizing: border-box;
+                    text-align: center;
+                    text-overflow: ellipsis;
+                    vertical-align: middle;
+                    border-bottom: 1px solid rgba(81,129,228,.1);
                 }
             }
-            .add{
-                height:25px;
+            tr:hover{
+                background-color:rgba(81,129,228,0.03);
             }
         }
-
     }
+
     /*table{*/
     /*tr{*/
     /*display: flex!important;*/

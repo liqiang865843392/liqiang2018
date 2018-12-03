@@ -152,8 +152,10 @@ export default {
   .ivu-tooltip-popper[x-placement^=top] .ivu-tooltip-arrow{
     border-top-color: rgba(43, 45, 70,.9)!important;
   }
+  .ivu-tooltip-popper[x-placement^=left] .ivu-tooltip-arrow{
+    border-left-color: rgba(43, 45, 70,.9)!important;
+  }
   .ivu-tooltip-arrow{
-
   }
   textarea{
     background: rgba(81,129,228,.06)!important;

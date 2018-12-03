@@ -17,10 +17,15 @@
                     </div>
                 </div>
                 <div class="swiper-slide">
-                    <Tooltip  :transfer=true content="返回" placement="top" class="create-data" >
-                        <Icon type="ios-arrow-forward"  size="20" style="position: absolute;right: -5px;top:-10px;cursor: pointer" @click="go_back"/>
-                    </Tooltip>
-                    <!--数据编辑-->
+                    <div style="margin-left: -18px;margin-right:-7px;margin-top: -8px;" v-show="get_is_current">
+                        <!--<div>-->
+                            <Tooltip  :transfer=true content="返回" placement="left" class="go-back" >
+                                <Icon type="ios-arrow-forward"  size="20" @click="go_back"/>
+                            </Tooltip>
+                            <!--<span class="">数据编辑</span>-->
+                        <!--</div>-->
+                        <TableData></TableData>
+                    </div>
                 </div>
              </div>
         </div>
@@ -39,6 +44,9 @@
       computed:{
           get_mode(){
               return this.mode ? 1 : 0;
+          },
+          get_is_current(){
+             return (this.legend_swiper && this.legend_swiper.activeIndex == 1) ? true : false;
           },
           // 配置项计算属性
           legend_show:{//图例的显示
@@ -97,6 +105,7 @@
       data(){
             return {
                 legend_swiper:null,
+                show:true
             }
       },
       mounted(){
@@ -106,6 +115,7 @@
               observeParents:true,
               spaceBetween:35
           })
+          console.log(2122,this.legend_swiper);
       },
       methods:{
           add_data(){//点击了添加数据按钮

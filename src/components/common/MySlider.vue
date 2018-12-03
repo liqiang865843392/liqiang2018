@@ -59,13 +59,14 @@
 <style scoped lang="scss">
   .my-slider{
       height:20px;
-      /*margin:12px 0;*/
+      margin-bottom: 6px;
     display: flex;
     /*align-items: center;*/
     .text{
-        margin-right:11px;
+        margin-right:12px;
         color: rgba(255,255,255,.5);
         font-weight: 700;
+        width:55px;
     }
     .icon{
       display: inline-block;

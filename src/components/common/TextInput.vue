@@ -3,7 +3,7 @@
             <label class="label-head" v-if="title">{{title}}</label>
             <span  v-if="type == 'number'">
                  <InputNumber  v-model="get_number_value"  :step=step :disabled="disabled"></InputNumber>
-                 <Checkbox v-if="auto" style="font-weight: normal!important;margin-left: 18px;" v-model="get_checkbox">自动</Checkbox>
+                 <Checkbox v-if="auto" style="font-weight: normal!important;margin-left: 15px;" v-model="get_checkbox">自动</Checkbox>
             </span>
             <textarea v-else-if="type == 'textarea' "  v-model="get_value" :style="{width:get_width}"></textarea>
             <input  v-else :placeholder="placeholder"  maxlength="16" v-model="get_value" :style="{width:get_width,textIndent:get_indent}" @input = "_onchange"/>

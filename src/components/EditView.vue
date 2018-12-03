@@ -77,7 +77,7 @@
                     </div>
                     <div class="swiper-slide developer-mode">
                         <div class="demo-carousel">
-                            <Icon class="out" @click="mode = true" type="md-arrow-forward" size="20" title="返回" color="rgba(255, 255, 255, 0.3)"/>
+                            <Icon class="out" @click="change_mode" type="md-arrow-forward" size="20" title="返回" color="rgba(255, 255, 255, 0.3)"/>
                             <!--<Input  type="textarea"  placeholder="请贴入option对象内容,如 option = { 内容 }"  :style="{height:carousel_height}"/>-->
                             <CodeEdit></CodeEdit>
                         </div>
@@ -520,8 +520,14 @@
                         top:-2px;
                         cursor: pointer;
                     }
-                    .create-data:hover{
+                    .create-data:hover,go-back:hover{
                         color:#2167ad;
+                    }
+                    .go-back{
+                        position:absolute;
+                        right: -8px;
+                        top: -31px;
+                        cursor: pointer;
                     }
                 }
                 .ivu-collapse-item{
@@ -588,7 +594,7 @@
                                         background: url('../svg/svg-sprite2.svg') -1341px -716px no-repeat;
                                     }
                                     .i-map{
-                                        background: url('../svg/svg-sprite2.svg') -1190px -1238px no-repeat;
+                                        background: url('../svg/svg-sprite2.svg') -1189px -1238px no-repeat;
                                     }
 
                                 }
