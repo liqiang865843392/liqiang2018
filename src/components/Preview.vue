@@ -1,5 +1,33 @@
 <template>
     <div class="layout">
+        <div class="swiper-container swiper-no-swiping" id="swiper1" style="height:300px;background: #1b2852;color:#fff;">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    1111111111
+                </div>
+                <div class="swiper-slide">
+                    222222222
+                </div>
+                <div class="swiper-slide">
+                    3333333333333
+                    <div class="swiper-container1" style="margin-top:50px;background-color: #191A2C;height:100px;">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                3-1
+                            </div>
+                            <div class="swiper-slide">
+                                3-2
+                            </div>
+                            <div class="swiper-slide">
+                                3-3
+                            </div>
+                        </div>
+                        <div id="swiper-pagination1"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
         <Layout style="height:100%;">
             <Content :style="{ background: '#fff',height:contentHeight}">
                 <div v-if="!this.$route.query.id" class="change_template"  @click="release">
@@ -45,6 +73,9 @@
     import LayoutTwo from '@/components/layout/layout-two';
     import LayoutThree from '@/components/layout/layout-three';
     import Echarts from '@/components/common/Echarts';
+
+    import Swiper from 'swiper'
+
     export default {
       props: {
       },
@@ -75,6 +106,21 @@
       },
       mounted(){
           this.contentHeight = '305px';
+          setTimeout(()=>{
+              var mySwiper = new Swiper('#swiper1', {
+                  pagination: {
+                      el: ".swiper-pagination",
+                      clickable: true
+                  }
+              })
+          },100)
+
+          var mySwiper1 = new Swiper('.swiper-container1', {
+              pagination: {
+                  el: "#swiper-pagination1",
+                  clickable: true
+              }
+          })
       },
       methods:{
           release(){//发布

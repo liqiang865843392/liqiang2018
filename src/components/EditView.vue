@@ -28,60 +28,71 @@
             </div>
         </div>
         <div class="right-view"  ref="carousel">
-            <Carousel v-model="get_mode" dots="none" arrow="never">
-                <CarouselItem class="developer-mode">
+            <!--<Carousel v-model="get_mode" dots="none" arrow="never">-->
+            <div class="swiper-container swiper-no-swiping" id="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide normal-mode">
+                        <div class="demo-carousel" style="padding:10px 0">
+                            <Collapse v-model="cur_panel">
+                                <Panel name="1">
+                                    图表标题
+                                    <div slot="content" class="title">
+                                        <Title @onchange="get_title" ></Title>
+                                    </div>
+                                </Panel>
+                                <Panel name="2">
+                                    图表类型
+                                    <div slot="content" class="chart-type">
+                                        <Tooltip  :transfer=true :content="item.title" placement="top" class="item"  :class="{ 'active': cur_chart === item.type }" v-for="(item,index) in chart_list" :key="index" @click.native="select_chart(item,index)">
+                                            <i class="chart-type-icon" :class="item.icon"></i>
+                                        </Tooltip>
+                                    </div>
+                                </Panel>
+                                <Panel name="3">
+                                    图例组件
+                                    <div slot="content">
+                                        <Legend @add_data="add_legend_data"></Legend>
+                                    </div>
+                                </Panel>
+                                <Panel name="4">
+                                    坐标X轴
+                                    <div slot="content">
+                                        <Xaxis></Xaxis>
+                                    </div>
+                                </Panel>
+                                <Panel name="5">
+                                    坐标Y轴
+                                    <div slot="content">
+                                        <Yaxis></Yaxis>
+                                    </div>
+                                </Panel>
+                                <Panel name="6">
+                                    图表样式
+                                    <div slot="content">
+                                        <Series></Series>
+                                    </div>
+                                </Panel>
+                            </Collapse>
+                        </div>
+                    </div>
+                    <div class="swiper-slide developer-mode">
+                        <div class="demo-carousel">
+                            <Icon class="out" @click="mode = true" type="md-arrow-forward" size="20" title="返回" color="rgba(255, 255, 255, 0.3)"/>
+                            <!--<Input  type="textarea"  placeholder="请贴入option对象内容,如 option = { 内容 }"  :style="{height:carousel_height}"/>-->
+                            <CodeEdit></CodeEdit>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+
+
+                <!--<CarouselItem class="developer-mode">-->
                     <!--<Icon type="ios-flask"  size="100" style="position: absolute;z-index:-1;left:50%;top:50%;transform: translate(-50%,-50%);opacity: 0.2"/>-->
-                    <div class="demo-carousel">
-                        <Icon class="out" @click="mode = true" type="md-arrow-forward" size="20" title="返回" color="rgba(255, 255, 255, 0.3)"/>
-                        <!--<Input  type="textarea"  placeholder="请贴入option对象内容,如 option = { 内容 }"  :style="{height:carousel_height}"/>-->
-                        <CodeEdit></CodeEdit>
-                    </div>
-                </CarouselItem>
-                <CarouselItem class="normal-mode">
-                    <div class="demo-carousel" style="padding:10px 0">
-                        <Collapse v-model="cur_panel">
-                            <Panel name="1">
-                                图表标题
-                                <p slot="content" class="title">
-                                    <Title @onchange="get_title" ></Title>
-                                </p>
-                            </Panel>
-                            <Panel name="2">
-                                图表类型
-                                <div slot="content" class="chart-type">
-                                    <Tooltip  :transfer=true :content="item.title" placement="top" class="item"  :class="{ 'active': cur_chart === item.type }" v-for="(item,index) in chart_list" :key="index" @click.native="select_chart(item,index)">
-                                        <i class="chart-type-icon" :class="item.icon"></i>
-                                    </Tooltip>
-                                </div>
-                            </Panel>
-                            <Panel name="3">
-                                图例组件
-                                <div slot="content">
-                                    <Legend @add_data="add_legend_data"></Legend>
-                                </div>
-                            </Panel>
-                            <Panel name="4">
-                                坐标X轴
-                                <div slot="content">
-                                    <Xaxis></Xaxis>
-                                </div>
-                            </Panel>
-                            <Panel name="5">
-                                坐标Y轴
-                                <div slot="content">
-                                    <Yaxis></Yaxis>
-                                </div>
-                            </Panel>
-                            <Panel name="6">
-                                图表样式
-                                <div slot="content">
-                                    <Series></Series>
-                                </div>
-                            </Panel>
-                        </Collapse>
-                    </div>
-                </CarouselItem>
-            </Carousel>
+
+                <!--</CarouselItem>-->
+                <!--<CarouselItem class="normal-mode">-->
+                <!--</CarouselItem>-->
+            <!--</Carousel>-->
         </div>
         <Modal title="添加数据">
             <TableData slot="content"></TableData>
@@ -90,6 +101,7 @@
 </template>
 
 <script>
+    import Swiper from 'swiper';
     import ChartThum from '@/components/ChartThum.vue';
     import Echarts from '@/components/common/Echarts';
     //引入每个修改组件
@@ -109,6 +121,7 @@
         data () {
             return {
                 mode:true,//编辑模式 true： 普通  false：开发者
+                mode_swiper:null,
                 // carousel_height:'',//开发者模式div高度
                 cur_arrow:'left',//当前点中方向按钮
                 left_arrow:false,//控制左边箭头方向
@@ -191,9 +204,8 @@
             }
         },
         computed:{
-            get_mode(){
-              return this.mode ? 1 : 0;
-            },
+            // get_mode(){
+            // },
             get_main_width(){
                 return this.main_width ? this.main_width : '666px';
             },
@@ -223,12 +235,23 @@
             window.onbeforeunload = function(event) {
                 return "您编辑的信息尚未保存，您确定要离开吗？"//这里内容不会显示在提示框，为了增加语义化。
             };
+
+            this.mode_swiper = new Swiper('#swiper', {
+                    centeredSlides: true,
+             })
+
             // console.log(222,this.$refs.carousel.offsetHeight);
             // this.carousel_height = this.$refs.carousel.offsetHeight + 'px';
         },
         methods:{
             change_mode(){//切换模式
-                this.mode = !this.mode;
+                if(this.mode){
+                    this.mode_swiper.slideTo(1, 600, false);
+                    this.mode= false;
+                }else{
+                    this.mode_swiper.slideTo(0, 600, false);
+                    this.mode= true;
+                }
                 // document.body.scrollTop
             },
             _preview(){//进入预览模式
@@ -341,13 +364,13 @@
             box-shadow: 0 2px 4px 0 rgba(0,0,0,.3), 0 10px 24px 0 rgba(0,0,0,.3), inset 0 -1px 0 0 rgba(81,130,227,.06);
             .box {
                 width: 106px;
-                height: 38px;
+                height: 35px;
                 font-size: 14px;
                 background: #66b1ff;
                 color: #fff;
                 border-radius: 4px;
                 cursor: pointer;
-                line-height: 38px;
+                line-height: 35px;
                 margin: 0 auto;
             }
             .change-mode{
@@ -504,7 +527,7 @@
                 .ivu-collapse-item{
                     box-shadow: inset 0 -1px 0 0 rgba(81,130,228,.2);
                     .ivu-collapse-content{
-                        padding:10px 36px;
+                        padding:0 36px 10px;
                         padding-right:15px;
                         .ivu-collapse-content-box{
                             padding: 0;

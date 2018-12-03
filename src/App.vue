@@ -51,6 +51,18 @@ export default {
  .mt10{
    margin-bottom:10px;
  }
+  /*修改swiper样式*/
+  .swiper-container{
+     overflow: inherit!important;
+ }
+  /*swiper禁止滑动class去掉手型*/
+  .swiper-no-swiping{
+    cursor:default!important;
+  }
+  /*图标icon*/
+  .ivu-input-icon{
+    z-index:0!important;
+  }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

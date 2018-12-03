@@ -102,7 +102,7 @@
             height: 16px;
             left: -49px;
             bottom: -2px;
-            z-index: 99;
+            /*z-index: 99;*/
         }
         .edit-icon{
             background: url('../../svg/svg-sprite3.svg') -176px -1360px no-repeat;

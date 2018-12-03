@@ -1,19 +1,35 @@
 <template>
     <div class="legend">
-        <Checkbox v-model="legend_show" style="">显示图例</Checkbox>
-        <Tooltip  :transfer=true content="添加图例数据" placement="left-end" class="create-data" >
-            <icon name="data" scale="2" @click.native = "add_data"></icon>
-        </Tooltip>
-        <MyRadio  @legend_align="legend_align" class="m-12" text="对齐方式"  :value="get_legend_orient"  :option="this.$store.state.common.select_option.algin_type"></MyRadio>
-        <MySlider  @distance="distance" text="边界距离" :value="get_distance_val"></MySlider>
-        <div class="option-item" style="padding:0;">
-            <MySelect iconType="font-icon" @onchange="legend_fontFamily" :value="get_legend_fontFamily" :option="this.$store.state.common.select_option.fontType"></MySelect>
-            <MySelect iconType="line-width-icon" @onchange="legend_fontSize" :value="get_legend_fontSize" :option="this.$store.state.common.select_option.font_size"></MySelect>
-            <ChooseColor iconType="font-icon" @onchange="legend_color" tooltip="字体色" :value="get_legend_color"></ChooseColor>
+        <!--class="swiper-no-swiping"-->
+        <div class="swiper-container" id="legend_swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <Checkbox v-model="legend_show" style="">显示图例</Checkbox>
+                    <Tooltip  :transfer=true content="添加图例数据" placement="left-end" class="create-data" >
+                        <icon name="data" scale="2" @click.native = "add_data"></icon>
+                    </Tooltip>
+                    <MyRadio  @legend_align="legend_align" class="m-12" text="对齐方式"  :value="get_legend_orient"  :option="this.$store.state.common.select_option.algin_type"></MyRadio>
+                    <MySlider  @distance="distance" text="边界距离" :value="get_distance_val"></MySlider>
+                    <div class="option-item" style="padding:0;">
+                        <MySelect iconType="font-icon" @onchange="legend_fontFamily" :value="get_legend_fontFamily" :option="this.$store.state.common.select_option.fontType"></MySelect>
+                        <MySelect iconType="line-width-icon" @onchange="legend_fontSize" :value="get_legend_fontSize" :option="this.$store.state.common.select_option.font_size"></MySelect>
+                        <ChooseColor iconType="font-icon" @onchange="legend_color" tooltip="字体色" :value="get_legend_color"></ChooseColor>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <Tooltip  :transfer=true content="返回" placement="top" class="create-data" >
+                        <Icon type="ios-arrow-forward"  size="20" style="position: absolute;right: -5px;top:-10px;cursor: pointer" @click="go_back"/>
+                    </Tooltip>
+                    <!--数据编辑-->
+                </div>
+             </div>
         </div>
+
+
     </div>
 </template>
 <script>
+    import Swiper from 'swiper'
     export default {
       props: {
       },
@@ -21,6 +37,9 @@
 
       },
       computed:{
+          get_mode(){
+              return this.mode ? 1 : 0;
+          },
           // 配置项计算属性
           legend_show:{//图例的显示
               get:function(){
@@ -77,15 +96,24 @@
       },
       data(){
             return {
-
+                legend_swiper:null,
             }
       },
       mounted(){
-
+          this.legend_swiper = new Swiper('#legend_swiper', {
+              centeredSlides: true,
+              observer:true,
+              observeParents:true,
+              spaceBetween:35
+          })
       },
       methods:{
           add_data(){//点击了添加数据按钮
-            this.$emit('add_data');
+            // this.$emit('add_data');
+              this.legend_swiper.slideTo(1, 600, false);//切换到第2个slide，速度为1秒
+          },
+          go_back(){//返回
+              this.legend_swiper.slideTo(0, 600, false);//切换到第1个slide，速度为1秒
           },
           legend_align(val){//获取当前选中图例对齐方式
               // this.$store1.state.legend
