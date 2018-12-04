@@ -1,6 +1,5 @@
 <template>
     <div class="legend">
-        <!--class="swiper-no-swiping"-->
         <div class="swiper-container" id="legend_swiper" >
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -18,13 +17,10 @@
                 </div>
                 <div class="swiper-slide">
                     <div style="margin-left: -18px;margin-right:-7px;margin-top: -8px;" v-show="get_is_current">
-                        <!--<div>-->
-                            <Tooltip  :transfer=true content="返回" placement="left" class="go-back" >
-                                <Icon type="ios-arrow-forward"  size="20" @click="go_back"/>
-                            </Tooltip>
-                            <!--<span class="">数据编辑</span>-->
-                        <!--</div>-->
-                        <TableData title="图例" :table_data = get_legend_data></TableData>
+                        <Tooltip  :transfer=true content="返回" placement="left" class="go-back" >
+                            <Icon type="ios-arrow-forward"  size="20" @click="go_back"/>
+                        </Tooltip>
+                        <TableData @save="edit_legend_data" title="图例" :table_data = get_legend_data></TableData>
                     </div>
                 </div>
              </div>
@@ -116,20 +112,21 @@
           this.legend_swiper = new Swiper('#legend_swiper', {
               // direction : 'vertical',
               // autoHeight:true,
-              // centeredSlides: true,
+              centeredSlides: true,
               observer:true,
               observeParents:true,
-              // spaceBetween:35
+              spaceBetween:37
           })
-          console.log(2122,this.legend_swiper);
       },
       methods:{
           add_data(){//点击了添加数据按钮
-            // this.$emit('add_data');
-              this.legend_swiper.slideTo(1, 500, false);//切换到第2个slide，速度为1秒
+              this.legend_swiper.slideTo(1, 500, false);
           },
           go_back(){//返回
-              this.legend_swiper.slideTo(0, 500, false);//切换到第1个slide，速度为1秒
+              this.legend_swiper.slideTo(0, 500, false);
+          },
+          edit_legend_data(data){//修改图例数据
+              this.$store.dispatch('edit_legend_data',data);
           },
           legend_align(val){//获取当前选中图例对齐方式
               // this.$store1.state.legend

@@ -72,11 +72,12 @@
                         _data.push({name:item,is_input:false});
                     });
                     this.cur_table_data = _data;
+                    console.log(7789111, this.cur_table_data);
                 }else if(type == 'rest'){//还原数据 (用于保存)
                     this.cur_table_data.forEach((item,index)=>{
                         _data.push(item.name);
                     });
-                    this.$store.dispatch('edit_legend_data',_data);
+                    this.$emit("save",_data);
                     console.log('_data1',_data);
                 }
             },
@@ -141,6 +142,7 @@
                     text-align: center;
                     font-size:12px;
                     color:rgba(255,255,255,.7);
+                    outline: none;
                 }
             }
             .tbody:hover{

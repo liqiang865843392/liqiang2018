@@ -29,6 +29,13 @@ export default{
           option.yAxis.min = val;
           this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option);
       },
+      edit_yAxis_data(context,yAxis_data){ //修改X轴数据
+          let option = this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option;
+          if(option.yAxis && option.yAxis.hasOwnProperty('data')){
+              option.yAxis.data = yAxis_data;
+          }
+          this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option)
+      }
       // xAxis_label_show(context,val){ //X轴label显示
       //     let option = this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option;
       //     option.xAxis.axisLabel.show = val;

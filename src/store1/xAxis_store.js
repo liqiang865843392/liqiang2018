@@ -56,6 +56,12 @@ export default{
           option.xAxis.axisLabel.rotate = val;
           this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option)
       },
-
+      edit_xAxis_data(context,xAxis_data){ //修改X轴数据
+          let option = this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option;
+          if(option.xAxis && option.xAxis.hasOwnProperty('data')){
+              option.xAxis.data = xAxis_data;
+          }
+          this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option)
+      }
   }
 }
