@@ -8,7 +8,7 @@
         </div>
         <div style="height:30px;">
             <span class="title-label" style="float:left;line-height: 30px;" >圆角半径</span>
-            <TextInput style="float:left;width:70%;" title="" type='number' step=1  placeholder="" @onchange="" value=""></TextInput>
+            <TextInput style="float:left;width:70%;" title="" type='number'   placeholder="" @onchange="" value=""></TextInput>
         </div>
         <Checkbox  style="">显示标签</Checkbox>
         <div class="option-item">
@@ -19,7 +19,7 @@
         <div class="option-item" style="padding:0;">
             <span class="title-label">文字设置</span>
             <MySelect tooltip="字号" iconType="line-width-icon"  value="" :option="this.$store.state.common.select_option.font_size"></MySelect>
-            <ChooseColor tooltip="字体色" iconType="font-icon" @onchange="pie_text_color" value="#fff"></ChooseColor>
+            <ChooseColor tooltip="字体色" iconType="font-icon" @onchange="" value="#fff"></ChooseColor>
         </div>
     </div>
 </template>

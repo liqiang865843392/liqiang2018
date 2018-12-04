@@ -2,35 +2,20 @@
     <div class="edit-data">
         <table>
             <tr>
-                <td>Name</td>
-                <td>Age</td>
-                <td>Address</td>
+                <td v-if="title">{{title}}</td>
+                <td v-else v-for="(item,index) in get_thead_data">{{item}}</td>
             </tr>
-            <tr v-for="(item,index) in legend_data" :key="index">
-                <td>{{item.value}}</td>
-                <td>{{item.value}}</td>
-                <td>{{item.value}}</td>
+            <tr v-if="this.cur_table_data.length <= 0">
+                <td>该图表暂无图例配置项</td>
             </tr>
-            <!--<tr>-->
-                <!--<td>Jim Green</td>-->
-                <!--<td>24</td>-->
-                <!--<td>London No</td>-->
-            <!--</tr>-->
-            <!--<tr>-->
-                <!--<td>Joe Black</td>-->
-                <!--<td>30</td>-->
-                <!--<td>Sydney No.</td>-->
-            <!--</tr>-->
-            <!--<tr>-->
-                <!--<td>Jon Snow</td>-->
-                <!--<td>26</td>-->
-                <!--<td>Ottawa No</td>-->
-            <!--</tr>-->
-            <!--<tr>-->
-                <!--<td>Jon Snow</td>-->
-                <!--<td>26</td>-->
-                <!--<td>Ottawa No</td>-->
-            <!--</tr>-->
+            <tr class="tbody" v-for="(item,index) in get_table_data" :key="index">
+                <td @dblclick="_edit(item,index)">
+                    <!--<Input v-if="item.is_input" @on-blur="onblur(index,$event)"/>-->
+                    <input  type="text" v-focus :value=item.name  v-if="item.is_input" @blur = "onblur(item,$event)">
+                    <span v-else>{{item.name}}</span>
+                </td>
+            </tr>
+
         </table>
     </div>
 
@@ -39,48 +24,61 @@
 <script>
     export default {
         props: {
+            title:{//固定表头标题
 
+            },
+            head_data:{ //表头数据
+
+            },
+            table_data:{ //表格数据
+
+            },
         },
         created(){
-
         },
         data(){
             return {
-                legend_data: [
-                    {
-                        value: 'legend_a',
-                        is_input:false
-                    },
-                    {
-                        value: 'legend_b',
-                        is_input:false
-                    },
-                    {
-                        value: 'legend_c',
-                        is_input:false
-                    },
-                    {
-                        value: 'legend_d',
-                        is_input:false
-                    },
-                    {
-                        value: 'legend_e',
-                        is_input:false
-                    },
-                ],
+                cur_table_data:[],//用于存放props中的cur_table_data
             }
         },
         computed:{
+            get_thead_data(){//获取当前图表数据的表头
+                    return this.head_data && this.head_data.length > 0 ?  this.head_data : [];
+            },
             get_table_data(){
-                return  this.table_data ? this.table_data : [];
+                this._handle_data();
+                return  this.cur_table_data && this.cur_table_data.length > 0 ? this.cur_table_data : [];
             }
         },
         methods:{
-            _edit(data,item){
-                // data.forEach((item,index)=>{//默认只允许1个菜单项可以编辑
-                //     // item.readonly=true;
-                // });
-                item.readonly = false;
+            _edit(item,index){//双击了单元格
+                console.log(5255,item);
+                item.is_input = true;
+                // this.cur_table_data.splice(index,1,)
+            },
+            onblur(item,e){//input 失去焦点 保存数据
+                // console.log(77777,e);
+                item.is_input=false;
+                item.name = e.target.value;
+                this._handle_data('rest');//还原数据并发送store保存
+                console.log('cur_table_data',this.cur_table_data);
+                // console.log(88888,index);
+            },
+            _handle_data(type='handle'){//数据处理函数(每一次传入props数据都需要在每一个item里添加一个是否显示input的标识)
+                let _data = [];
+                if(type == 'handle'){//处理数据 (用于修改数据：动态显示input)
+                    this.cur_table_data =  this.table_data;
+                    this.table_data.forEach((item,index)=>{
+                        _data.push({name:item,is_input:false});
+                    });
+                    this.cur_table_data = _data;
+                }else if(type == 'rest'){//还原数据 (用于保存)
+                    this.cur_table_data.forEach((item,index)=>{
+                        _data.push(item.name);
+                    });
+                    this.$store.dispatch('edit_legend_data',_data);
+                    console.log('_data1',_data);
+                }
             },
             handleAdd (data) {//添加数据项
                 if (data.length) {
@@ -91,10 +89,6 @@
                 } else {
                     data.push(0);
                 }
-            },
-            handleClose(data,index){//传入要删除的index
-                data.splice(index, 1);
-                console.log(111112222);
             }
         }
     }
@@ -130,15 +124,26 @@
             tr{
                 td,th{
                     border-right: 1px solid rgba(81,129,228,.1);
-                    height: 20px;
+                    height: 22px;
                     box-sizing: border-box;
                     text-align: center;
                     text-overflow: ellipsis;
                     vertical-align: middle;
+                    line-height: 22px;
                     border-bottom: 1px solid rgba(81,129,228,.1);
                 }
             }
-            tr:hover{
+            .tbody{
+                input{
+                    background-color: transparent!important;
+                    border:none;
+                    width:100%;
+                    text-align: center;
+                    font-size:12px;
+                    color:rgba(255,255,255,.7);
+                }
+            }
+            .tbody:hover{
                 background-color:rgba(81,129,228,0.03);
             }
         }

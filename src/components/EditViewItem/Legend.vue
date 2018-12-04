@@ -1,11 +1,11 @@
 <template>
     <div class="legend">
         <!--class="swiper-no-swiping"-->
-        <div class="swiper-container" id="legend_swiper">
+        <div class="swiper-container" id="legend_swiper" >
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <Checkbox v-model="legend_show" style="">显示图例</Checkbox>
-                    <Tooltip  :transfer=true content="添加图例数据" placement="left-end" class="create-data" >
+                    <Tooltip  :transfer=true content="编辑图例数据" placement="left-end" class="create-data" >
                         <icon name="data" scale="2" @click.native = "add_data"></icon>
                     </Tooltip>
                     <MyRadio  @legend_align="legend_align" class="m-12" text="对齐方式"  :value="get_legend_orient"  :option="this.$store.state.common.select_option.algin_type"></MyRadio>
@@ -24,7 +24,7 @@
                             </Tooltip>
                             <!--<span class="">数据编辑</span>-->
                         <!--</div>-->
-                        <TableData></TableData>
+                        <TableData title="图例" :table_data = get_legend_data></TableData>
                     </div>
                 </div>
              </div>
@@ -45,8 +45,12 @@
           get_mode(){
               return this.mode ? 1 : 0;
           },
-          get_is_current(){
+          get_is_current(){//只显示当前swiper (避免显示出现异常)
              return (this.legend_swiper && this.legend_swiper.activeIndex == 1) ? true : false;
+          },
+          get_legend_data(){//获取图例数据传入数据显示组件
+              let legend_data = this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.legend.data;
+              return legend_data && legend_data.length > 0 ? legend_data : [];
           },
           // 配置项计算属性
           legend_show:{//图例的显示
@@ -110,20 +114,22 @@
       },
       mounted(){
           this.legend_swiper = new Swiper('#legend_swiper', {
-              centeredSlides: true,
+              // direction : 'vertical',
+              // autoHeight:true,
+              // centeredSlides: true,
               observer:true,
               observeParents:true,
-              spaceBetween:35
+              // spaceBetween:35
           })
           console.log(2122,this.legend_swiper);
       },
       methods:{
           add_data(){//点击了添加数据按钮
             // this.$emit('add_data');
-              this.legend_swiper.slideTo(1, 600, false);//切换到第2个slide，速度为1秒
+              this.legend_swiper.slideTo(1, 500, false);//切换到第2个slide，速度为1秒
           },
           go_back(){//返回
-              this.legend_swiper.slideTo(0, 600, false);//切换到第1个slide，速度为1秒
+              this.legend_swiper.slideTo(0, 500, false);//切换到第1个slide，速度为1秒
           },
           legend_align(val){//获取当前选中图例对齐方式
               // this.$store1.state.legend

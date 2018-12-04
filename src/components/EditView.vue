@@ -526,14 +526,14 @@
                     .go-back{
                         position:absolute;
                         right: -8px;
-                        top: -31px;
+                        top: -30px;
                         cursor: pointer;
                     }
                 }
                 .ivu-collapse-item{
                     box-shadow: inset 0 -1px 0 0 rgba(81,130,228,.2);
                     .ivu-collapse-content{
-                        padding:0 36px 10px;
+                        padding:0 36px 15px;
                         padding-right:15px;
                         .ivu-collapse-content-box{
                             padding: 0;

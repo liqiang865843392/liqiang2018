@@ -515,6 +515,7 @@ function deepCopy(obj) {
 }
 var xData = [],
     yData = [];
+
 var data = [
     {
         "name": "第一种",
@@ -559,7 +560,6 @@ RealData.map((item, index) => {
         }
     }
 });
-console.log('RealData',RealData);
 borderData.map((item, index) => {
     item.itemStyle = {
         normal: {
@@ -583,7 +583,7 @@ export const pie_option = {
             fontSize: 12,
 
         },
-        data: data,
+        data: ['第一种','第二种','第三种','第四种','第五种'],
     },
     grid: {
 
@@ -666,7 +666,7 @@ export const line_option = {
         itemWidth: 10,
         itemHeight: 6,
         itemGap: 13,
-        data: ['消耗脂肪'],
+        data: ['接口响应时间'],
         right: '4%',
         textStyle: {
             fontSize: 12,
@@ -1246,13 +1246,7 @@ export const funnel_option= {
             fontSize:12,
             color:'rgba(255,255,255,.7)'
         },
-        data: [
-            { name: '数据1',  textStyle: {color: 'rgba(255,255,255,.7)'}},
-            { name: '数据2',  textStyle: {color: 'rgba(255,255,255,.7)'}},
-            { name: '数据3',  textStyle: {color: 'rgba(255,255,255,.7)'}},
-            { name: '数据4',  textStyle: {color: 'rgba(255,255,255,.7)'}},
-            { name: '数据5',  textStyle: {color: 'rgba(255,255,255,.7)'}},
-            ]
+        data: ['数据1','数据2','数据3','数据4','数据5']
     },
     xAxis: {
         show:false,

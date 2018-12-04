@@ -1,6 +1,6 @@
 <template>
     <div class="layout">
-        <div class="swiper-container swiper-no-swiping" id="swiper1" style="height:300px;background: #1b2852;color:#fff;">
+        <div class="swiper-container" id="swiper1" style="height:300px;background: #1b2852;color:#fff;">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     1111111111
@@ -116,10 +116,11 @@
           },100)
 
           var mySwiper1 = new Swiper('.swiper-container1', {
+              direction : 'vertical',
               pagination: {
                   el: "#swiper-pagination1",
                   clickable: true
-              }
+              },
           })
       },
       methods:{

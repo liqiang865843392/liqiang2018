@@ -8,10 +8,10 @@ export default{
   getters:{
 
   },
-  mutations:{//官方不推荐异步操作放在这里
+  mutations:{
 
   },
-  actions:{//官方推荐异步操作放在这里
+  actions:{
 
       legend_show(context,val){ //图例显示
           let option = this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option;
@@ -61,6 +61,24 @@ export default{
           option.legend.textStyle.color = val;
           this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option);
       },
+
+      edit_legend_data(context,legend_data){//图例数据修改
+          let option = this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option;
+          if(option.series && option.series.length <= 1 && option.series[0].hasOwnProperty('data') &&  typeof(option.series[0].data[0]) == 'object'){ //series长度为1并且 data[0]的类型的对象 说明该图表的series 数据为特殊结构 一般饼图和漏斗图是这样
+              let data = option.series[0];
+              data.hasOwnProperty('data') && legend_data.forEach((item,index)=>{
+                  data.data[index].name = item;
+              });
+          }else{//说明是标准数据格式图表
+              legend_data.forEach((item,index)=>{
+                  if(option.series[index] && option.series[index].hasOwnProperty('name')){
+                      option.series[index].name = item;
+                  }
+              });
+          }
+          option.legend.data = legend_data;
+          this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option);
+      }
 
   }
 }

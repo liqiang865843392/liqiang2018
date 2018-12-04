@@ -26,6 +26,7 @@
           },
           step:{//数字框
               type:Number,
+              default:1
           },
           type:{
               type:String,
