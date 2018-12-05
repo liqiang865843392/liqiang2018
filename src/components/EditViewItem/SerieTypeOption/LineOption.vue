@@ -2,9 +2,9 @@
     <!--柱状图option-->
     <div class="line-option">
         <div class="option-item">
-            <Checkbox  style="">显示标记</Checkbox>
-            <Checkbox  style="">平滑曲线</Checkbox>
-            <Checkbox  style="">显示标签</Checkbox>
+            <Checkbox  style="margin-right:0">显示标记</Checkbox>
+            <Checkbox  style="margin-right:0">平滑曲线</Checkbox>
+            <Checkbox style="margin-right:0">显示标签</Checkbox>
             <Tooltip  :transfer=true content="编辑图形数据" placement="left-end" class="create-data" >
                 <icon name="data" scale="2" @click.native = "add_data"></icon>
             </Tooltip>
@@ -30,7 +30,7 @@
             <MySelect tooltip="字号" iconType="line-width-icon" @onchange="" value="" :option="this.$store.state.common.select_option.font_size"></MySelect>
         </div>
         <div class="option-item" style="padding-top: 7px;padding-left:70px;justify-content: flex-start">
-            <MySelect tooltip="字体粗细" iconType="line-width-icon" @onchange="" value="" :option="this.$store.state.common.select_option.font_size"></MySelect>
+            <IconRadio icon="md-color-wand"  tooltip="加粗" ></IconRadio>
             <ChooseColor style="margin-left:12px;" iconType="font-icon" tooltip="字体颜色" @onchange="" value=""></ChooseColor>
         </div>
     </div>

@@ -3,8 +3,8 @@
     <div class="radar-option">
         <span class="title-label" style="color:#2d8cf0!important;">雷达坐标系</span>
         <div class="option-item">
-            <MySelect tooltip="内外半径" iconType="line-width-icon" @onchange="" value="" :option="this.$store.state.common.select_option.line_width"></MySelect>
-            <MySelect tooltip="类型" iconType="line-width-icon" @onchange="" value="" :option="this.$store.state.common.select_option.line_width"></MySelect>
+            <MySelect tooltip="内外半径" iconType="line-width-icon" @onchange="" value="" :option="this.$store.state.common.select_option.inside_radius"></MySelect>
+            <MySelect tooltip="类型" iconType="line-width-icon" @onchange="" value="" :option="this.$store.state.common.select_option.symbolType"></MySelect>
             <TextInput  tooltip="分隔段数" iconType="font-icon" type='number'  placeholder="" @onchange="" value=""></TextInput>
         </div>
         <div class="option-item" style="line-height: 8px;">

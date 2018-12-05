@@ -1,5 +1,5 @@
 import {bar_option,area_option,bar_option_1,pie_option,line_option,scatter_option,radar_option,gauge_option,funnel_option,map_option} from '@/util/echarts_option.js';
-import {line_type,font_size,fontType,text_direction,algin_type,line_width,inside_radius,outer_radius,spacing,location,symbolType} from '@/util/select_data.js';//导入选择菜单数据
+import {line_type,font_size,fontType,text_direction,algin_type,line_width,inside_radius,outer_radius,spacing,location,symbolType,funnel_algin,funnel_data_sort,funnel_label_location,gauge_angle} from '@/util/select_data.js';//导入选择菜单数据
 export default{
   state:{
       all_echarts:{
@@ -26,6 +26,10 @@ export default{
           spacing:spacing,//间距数据 10%-100%
           location:location,//数据位置
           symbolType:symbolType,//标记图形类型
+          funnel_algin:funnel_algin,//漏斗图中的对齐方式
+          funnel_data_sort:funnel_data_sort,//漏斗图中的数据排序
+          funnel_label_location:funnel_label_location,//漏斗图中的标签位置
+          gauge_angle:gauge_angle//仪表盘中的角度
       },
       //所有模板的主标题数据
       main_title:['模板1主标题','模板2主标题','模板3主标题'],

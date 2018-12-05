@@ -344,3 +344,90 @@ export const location = [
         value:'内部'
     }
 ];
+
+export const funnel_algin = [
+    {
+        label:'中心',
+        value:'center'
+    },
+    {
+        label:'左侧',
+        value:'left'
+    },
+    {
+        label:'右侧',
+        value:'right'
+    }
+];
+export const funnel_data_sort = [
+    {
+        label:'原始顺序',
+        value:'none'
+    },
+    {
+        label:'升序',
+        value:'ascending'
+    },
+    {
+        label:'降序',
+        value:'descending'
+    },
+];
+export const funnel_label_location = [
+    {
+        label:'左侧',
+        value:'left'
+    },
+    {
+        label:'右侧',
+        value:'right'
+    },
+    {
+        label:'内部',
+        value:'inside'
+    },
+];
+
+//仪表盘数据
+export const gauge_angle = [//角度
+    {
+        label:'-45°',
+        value:'-45'
+    },
+    {
+        label:'0°',
+        value:'0'
+    },
+    {
+        label:'45°',
+        value:'45'
+    },
+    {
+        label:'90°',
+        value:'90'
+    },
+    {
+        label:'135°',
+        value:'135'
+    },
+    {
+        label:'180°',
+        value:'180'
+    },
+    {
+        label:'225°',
+        value:'225'
+    },
+    {
+        label:'270°',
+        value:'270'
+    },
+    {
+        label:'315°',
+        value:'315'
+    },
+];
+
+
+
+

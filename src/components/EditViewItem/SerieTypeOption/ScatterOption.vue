@@ -12,7 +12,7 @@
         <div class="option-item" style="line-height: 8px;">
             <span class="title-label">字体属性</span>
             <IconRadio icon="md-color-wand"  tooltip="加粗" ></IconRadio>
-            <MySelect iconType="line-width-icon" @onchange="" value="" :option="this.$store.state.common.select_option.font_size"></MySelect>
+            <MySelect iconType="line-width-icon" tooltip="字号"   @onchange="" value="" :option="this.$store.state.common.select_option.font_size"></MySelect>
             <ChooseColor iconType="font-icon" tooltip="字体色" @onchange="" value=""></ChooseColor>
         </div>
     </div>

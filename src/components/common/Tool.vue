@@ -79,6 +79,7 @@
                         );
                      return;
                  }
+                  localStorage.setItem("thumbs",this.$store.state.common.thumbs);//将缩略存入localStorage（防止刷新后缩略图消失）
                   console.log('length',this.$store.state.common.all_title[this.$store.state.common.template_no - 1].length);
                   this.$store.dispatch('edit_chart',{type,chart_index});
                   this.$router.push({path:'/edit'});//跳转到编辑页面
