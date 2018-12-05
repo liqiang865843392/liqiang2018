@@ -10,6 +10,7 @@ import CodeEdit from '@/components/common/CodeEdit';
 import Modal from '@/components/common/Modal';
 import TableData from '@/components/common/TableData';
 import DateFormat from '@/components/common/DateFormat';
+import IconRadio from '@/components/common/IconRadio';
 
 Vue.component('MySelect', MySelect);
 Vue.component('LineSelect', LineSelect);
@@ -21,4 +22,5 @@ Vue.component('TableData', TableData);
 Vue.component('CodeEdit', CodeEdit);
 Vue.component('Modal', Modal);
 Vue.component('DateFormat', DateFormat);
+Vue.component('IconRadio', IconRadio);
 

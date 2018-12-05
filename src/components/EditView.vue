@@ -503,26 +503,27 @@
                 }
             }
             .normal-mode{
-                .legend,.edit-x,.edit-y{
+                .legend,.edit-x,.edit-y,.series{
                     position: relative;
                     .option-item{
+                        position: relative;
                         padding:10px 0;
-                        padding-left:16px;
                         display: flex;
                         align-items: center;
-                        /*justify-content: space-around;*/
-                        justify-content: flex-start;
+                        justify-content: space-between;
+                        /*justify-content: flex-start;*/
 
                     }
                     .create-data{
-                        position:absolute;
-                        right:1px;
-                        top:-2px;
+                        /*position:absolute;*/
+                        /*right:1px;*/
+                        /*top:0;*/
                         cursor: pointer;
                     }
-                    .create-data:hover,go-back:hover{
+                    .create-data:hover,go-back:hover,.bold:hover{
                         color:#2167ad;
                     }
+
                     .go-back{
                         position:absolute;
                         right: -8px;

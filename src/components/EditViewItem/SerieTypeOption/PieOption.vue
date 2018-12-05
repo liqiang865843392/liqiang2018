@@ -10,7 +10,7 @@
         </div>
         <div class="option-item" style="padding:0;">
             <span class="title-label">文字设置</span>
-            <MySelect tooltip="字号" iconType="line-width-icon"  value="" :option="this.$store.state.common.select_option.font_size"></MySelect>
+            <MySelect style="margin-left: -20px;" tooltip="字号" iconType="line-width-icon"  value="" :option="this.$store.state.common.select_option.font_size"></MySelect>
             <ChooseColor tooltip="字体色" iconType="font-icon" @onchange="pie_text_color" value="#fff"></ChooseColor>
         </div>
 

@@ -3,19 +3,20 @@
         <div class="swiper-container" id="xAxis_swiper" >
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <div>
-                        <Checkbox v-model="xAxis_line_show"  style="">显示坐标轴</Checkbox>
-                        <Tooltip  :transfer=true content="添加图例数据" placement="left-end" class="create-data" >
-                            <icon name="data" scale="2"  @click.native = "add_data"></icon>
-                        </Tooltip>
-                        <div class="option-item">
+                        <div class="option-item" style="padding-bottom: 0">
+                            <Checkbox v-model="xAxis_line_show"  style="">显示坐标轴</Checkbox>
+                            <Tooltip  :transfer=true content="编辑X轴数据" placement="left-end" class="create-data" >
+                                <icon name="data" scale="2"  @click.native = "add_data"></icon>
+                            </Tooltip>
+                        </div>
+                        <div class="option-item" style="padding-left: 16px;">
                             <LineSelect iconType="line-icon" @onchange="change_line_type" :value="get_xAxis_line_type" :option="this.$store.state.common.select_option.line_type"></LineSelect>
                             <MySelect iconType="line-width-icon" @onchange="change_line_width" :value="get_xAxis_line_width" :option="this.$store.state.common.select_option.line_width"></MySelect>
                             <ChooseColor @onchange="xAxis_line_color" tooltip="线条色" :value="get_xAxis_line_color"></ChooseColor>
                         </div>
 
                         <Checkbox v-model="xAxis_label_show" style="">显示标签</Checkbox>
-                        <div class="option-item">
+                        <div class="option-item" style="padding-left: 16px;">
                             <MySelect iconType="font-icon" @onchange="change_fontFamily" :value="get_xAxis_fontFamily"  :option="this.$store.state.common.select_option.fontType"></MySelect>
                             <MySelect iconType="line-width-icon" @onchange="change_fontSize" :value="get_xAxis_fontSize" :option="this.$store.state.common.select_option.font_size"></MySelect>
                             <ChooseColor iconType="font-icon" tooltip="字体色" @onchange="xAxis_label_color" :value="get_xAxis_label_color"></ChooseColor>
@@ -23,14 +24,13 @@
                         <div class="option-item" style="display: block;padding-left: 20px;">
                             <MySelect iconType="" text="文字方向" @onchange="xAxis_label_direction" :value="get_xAxis_label_direction" :option="this.$store.state.common.select_option.text_direction"></MySelect>
                         </div>
-                    </div>
                 </div>
                 <div class="swiper-slide">
                     <div style="margin-left: -18px;margin-right:-7px;margin-top: -8px;" v-show="get_is_current">
                         <Tooltip  :transfer=true content="返回" placement="left" class="go-back" >
                             <Icon type="ios-arrow-forward"  size="20" @click="go_back"/>
                         </Tooltip>
-                        <TableData   @save="edit_xAxis_data" title="X轴" :table_data = get_xAxis_data></TableData>
+                        <TableData   @save="edit_xAxis_data" title="X轴数据" :table_data = get_xAxis_data></TableData>
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@
         <Tooltip  v-else  :transfer=true :content="tooltip" placement="top" offset="-2">
             <i class="icon" :class="setClass" ></i>
         </Tooltip>
-      <Select  size="small" style="margin-right:10px;" v-model="get_value" @on-change="on_change">
+      <Select  size="small" v-model="get_value" @on-change="on_change">
         <Option v-for="(item,index) in get_option" :value="item.value" :key="index">
             {{ item.label }}
         </Option>

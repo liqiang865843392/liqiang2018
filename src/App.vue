@@ -48,6 +48,9 @@ export default {
  .p10{
    padding:10px;
  }
+ .p-10{
+   padding:10px 0;
+ }
  .mt10{
    margin-bottom:10px;
  }

@@ -59,9 +59,8 @@
 <style scoped lang="scss">
   .my-slider{
       height:20px;
-      margin-bottom: 6px;
-    display: flex;
-    /*align-items: center;*/
+      display: flex;
+      align-items: center;
     .text{
         margin-right:12px;
         color: rgba(255,255,255,.5);
@@ -77,7 +76,6 @@
     .slider{
         width: 190px;
         float: right;
-        margin-top: -10px;
     }
   }
 </style>

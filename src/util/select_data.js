@@ -149,6 +149,41 @@ export const algin_type = [
         value:'vertical'
     },
 ];
+//标记类型
+export const symbolType = [
+    {
+        label:'无',
+        value:'none'
+    },
+    {
+        label:'圆形',
+        value:'circle'
+    },
+    {
+        label:'方形',
+        value:'rect'
+    },
+    {
+        label:'圆角矩形',
+        value:'roundRect'
+    },
+    {
+        label:'三角形',
+        value:'triangle'
+    },
+    {
+        label:'菱形',
+        value:'diamond'
+    },
+    {
+        label:'空心',
+        value:'pin'
+    },
+    {
+        label:'箭头',
+        value:'arrow'
+    }
+];
 
 //饼状图配置
 //内半径

@@ -3,22 +3,22 @@
         <div class="swiper-container" id="yAxis_swiper" >
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <div class="mt10">
+                    <div class="option-item">
                         <Checkbox v-model="yAxis_line_show" style="">显示坐标轴</Checkbox>
-                        <Tooltip  :transfer=true content="添加图例数据" placement="left-end" class="create-data" >
+                        <Tooltip  :transfer=true content="编辑Y轴数据" placement="left-end" class="create-data" >
                             <icon name="data" scale="2" @click.native = "add_data"></icon>
                         </Tooltip>
                     </div>
-                    <TextInput title="标题" @onchange="yAxis_name" :value="get_yAxis_name" placeholder="请输入标题单位"></TextInput>
-                    <TextInput title="最大值" type='number' auto placeholder="" @onchange="yAxis_max" :value="get_yAxis_max"></TextInput>
-                    <TextInput title="最小值" type='number' auto placeholder="" @onchange="yAxis_min" :value="get_yAxis_min"></TextInput>
+                    <TextInput class="p-10" title="标题" @onchange="yAxis_name" :value="get_yAxis_name" placeholder="请输入标题单位"></TextInput>
+                    <TextInput class="p-10" title="最大值" type='number' auto placeholder="" @onchange="yAxis_max" :value="get_yAxis_max"></TextInput>
+                    <TextInput class="p-10" title="最小值" type='number' auto placeholder="" @onchange="yAxis_min" :value="get_yAxis_min"></TextInput>
                 </div>
                 <div class="swiper-slide">
                     <div style="margin-left: -18px;margin-right:-7px;margin-top: -8px;" v-show="get_is_current">
                         <Tooltip  :transfer=true content="返回" placement="left" class="go-back" >
                             <Icon type="ios-arrow-forward"  size="20" @click="go_back"/>
                         </Tooltip>
-                        <TableData   @save="edit_yAxis_data" title="Y轴" :table_data = get_yAxis_data></TableData>
+                        <TableData   @save="edit_yAxis_data" title="Y轴数据" :table_data = get_yAxis_data></TableData>
                     </div>
                 </div>
             </div>

@@ -1,12 +1,15 @@
 <template>
         <div class="text-input">
-            <label class="label-head" v-if="title">{{title}}</label>
-            <span  v-if="type == 'number'">
-                 <InputNumber  v-model="get_number_value"  :step=step :disabled="disabled"></InputNumber>
-                 <Checkbox v-if="auto" style="font-weight: normal!important;margin-left: 15px;" v-model="get_checkbox">自动</Checkbox>
-            </span>
-            <textarea v-else-if="type == 'textarea' "  v-model="get_value" :style="{width:get_width}"></textarea>
-            <input  v-else :placeholder="placeholder"  maxlength="16" v-model="get_value" :style="{width:get_width,textIndent:get_indent}" @input = "_onchange"/>
+                <label class="label-head" v-if="title">{{title}}</label>
+                <Tooltip   v-if="iconType" :transfer=true :content="tooltip" placement="top" offset="-2">
+                        <i class="icon" :class="setClass" ></i>
+                </Tooltip>
+                <InputNumber  v-if="type == 'number'" v-model="get_number_value"  :step=step :disabled="disabled"></InputNumber>
+                <span v-if="auto">
+                      <Checkbox   v-if="type == 'number'"  style="font-weight: normal!important;margin-left: 15px;" v-model="get_checkbox">自动</Checkbox>
+                </span>
+                <textarea v-if="type == 'textarea' "  v-model="get_value" :style="{width:get_width}"></textarea>
+                <input  v-if="type == 'text' " :placeholder="placeholder"  maxlength="16" v-model="get_value" :style="{width:get_width,textIndent:get_indent}" @input = "_onchange"/>
         </div>
 </template>
 <script>
@@ -21,8 +24,12 @@
           indent:{
 
           },
+          tooltip:{
+
+          },
           auto:{ //数字选择需要自动复选框
               type:Boolean,
+              default:false
           },
           step:{//数字框
               type:Number,
@@ -30,11 +37,14 @@
           },
           type:{
               type:String,
-              default:''
+              default:'text'
           },
           title:{
               type:String,
               default:''
+          },
+          iconType:{
+              type:String,
           },
           placeholder:{
               type:String,
@@ -45,6 +55,9 @@
 
       },
       computed:{
+          setClass(){
+              return  this.iconType;
+          },
           get_number_value(){
               return  !this.value ? 0 : this.value;
           },
@@ -91,6 +104,7 @@
  .ivu-input-number{
      position: relative;
      width:52%!important;
+     min-width:50px;
      height:24px!important;
      color: rgba(255,255,255,1);
      border: none!important;
@@ -133,8 +147,8 @@
 </style>
 <style scoped lang="scss">
     .text-input{
-        height:28px!important;
-        margin-bottom:8px;
+        /*height:28px!important;*/
+        /*margin-bottom:8px;*/
         .label-head{
             display: inline-block;
             width: 50px;
@@ -163,6 +177,22 @@
         }
         input:focus{
             box-shadow: 0 -2px 0 0 rgba(81,130,228,1) inset;
+        }
+        .icon{
+            display: inline-block;
+            width:16px;
+            height:16px;
+            margin-right:6px;
+        }
+        /*图标*/
+        .line-icon{
+            background: url('../../svg/svg-sprite3.svg') -558px -1027px no-repeat;
+        }
+        .line-width-icon{
+            background: url('../../svg/svg-sprite3.svg') -574px -1027px no-repeat;
+        }
+        .font-icon{
+            background: url('../../svg/svg-sprite3.svg') -1117px -416px no-repeat;
         }
     }
 </style>

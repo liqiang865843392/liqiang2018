@@ -78,7 +78,6 @@
             justify-content: flex-start;
         }
         .title-label{
-            margin-right:20px;
             color: rgba(255,255,255,.5)!important;
             font-weight: 700!important;
         }

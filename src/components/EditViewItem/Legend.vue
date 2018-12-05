@@ -3,13 +3,19 @@
         <div class="swiper-container" id="legend_swiper" >
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <Checkbox v-model="legend_show" style="">显示图例</Checkbox>
-                    <Tooltip  :transfer=true content="编辑图例数据" placement="left-end" class="create-data" >
-                        <icon name="data" scale="2" @click.native = "add_data"></icon>
-                    </Tooltip>
-                    <MyRadio  @legend_align="legend_align" class="m-12" text="对齐方式"  :value="get_legend_orient"  :option="this.$store.state.common.select_option.algin_type"></MyRadio>
-                    <MySlider  @distance="distance" text="边界距离" :value="get_distance_val"></MySlider>
-                    <div class="option-item" style="padding:0;">
+                    <div class="option-item">
+                        <Checkbox v-model="legend_show" style="">显示图例</Checkbox>
+                        <Tooltip  :transfer=true content="编辑图例数据" placement="left-end" class="create-data" >
+                            <icon name="data" scale="2" @click.native = "add_data"></icon>
+                        </Tooltip>
+                    </div>
+                    <div class="option-item">
+                        <MyRadio  @legend_align="legend_align"  text="对齐方式"  :value="get_legend_orient"  :option="this.$store.state.common.select_option.algin_type"></MyRadio>
+                    </div>
+                    <div class="option-item">
+                        <MySlider  @distance="distance" text="边界距离" :value="get_distance_val"></MySlider>
+                    </div>
+                    <div class="option-item" style="padding-top:0">
                         <MySelect iconType="font-icon" @onchange="legend_fontFamily" :value="get_legend_fontFamily" :option="this.$store.state.common.select_option.fontType"></MySelect>
                         <MySelect iconType="line-width-icon" @onchange="legend_fontSize" :value="get_legend_fontSize" :option="this.$store.state.common.select_option.font_size"></MySelect>
                         <ChooseColor iconType="font-icon" @onchange="legend_color" tooltip="字体色" :value="get_legend_color"></ChooseColor>
@@ -20,7 +26,7 @@
                         <Tooltip  :transfer=true content="返回" placement="left" class="go-back" >
                             <Icon type="ios-arrow-forward"  size="20" @click="go_back"/>
                         </Tooltip>
-                        <TableData @save="edit_legend_data" title="图例" :table_data = get_legend_data></TableData>
+                        <TableData @save="edit_legend_data" title="图例数据" :table_data = get_legend_data></TableData>
                     </div>
                 </div>
              </div>
@@ -115,7 +121,7 @@
               centeredSlides: true,
               observer:true,
               observeParents:true,
-              spaceBetween:37
+              spaceBetween:40
           })
       },
       methods:{
@@ -151,6 +157,9 @@
     }
 </script>
 <style  lang="scss">
+    .legend{
+
+    }
 
 </style>
 
