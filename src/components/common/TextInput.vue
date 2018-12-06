@@ -58,8 +58,13 @@
           setClass(){
               return  this.iconType;
           },
-          get_number_value(){
-              return  !this.value ? 0 : this.value;
+          get_number_value:{
+              get:function(){
+                  return  !this.value ? 0 : this.value;
+              },
+              set:function(val){
+                  this.$emit('onchange',val);
+              }
           },
           get_value:{
               get:function(){

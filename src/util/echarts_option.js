@@ -96,7 +96,6 @@ export const bar_option = {
             barGap: '0%', // Make series be overlap
             barCategoryGap: 1,
             itemStyle: {
-                normal: {
                     color: {
                         type: 'linear',
                         x: 0,
@@ -112,19 +111,14 @@ export const bar_option = {
                         }],
                         globalCoord: false // 缺省为 false
                     },
-                    label: {
-                        show: false,
-                        position: 'top',
-                        formatter: '{c}%'
-                    }
-                }
             },
             stack: '',
             data:[2800,3500,6300,2800,3500,6300,2800,3500,6300,2800,3500,6300],
             label: {
-                show: false,
+                show: true,
                 position: 'top',
-                formatter: '{c}%'
+                formatter: '{c}%',
+                color:'#fff'
             }
         },
         {
@@ -132,7 +126,6 @@ export const bar_option = {
             type:'bar',
             stack: '',
             itemStyle: {
-                normal: {
                     color: {
                         type: 'linear',
                         x: 0,
@@ -148,12 +141,11 @@ export const bar_option = {
                         }],
                         globalCoord: false // 缺省为 false
                     },
-                    label: {
-                        show: false,
-                        position: 'top',
-                        formatter: '{c}%'
-                    }
-                }
+            },
+            label: {
+                show: false,
+                position: 'top',
+                formatter: '{c}%'
             },
             data:[1700,2300,5200,1700,2300,5200,1700,2300,5200,1700,2300,5200]
         },
@@ -162,7 +154,6 @@ export const bar_option = {
             type:'bar',
             stack: '',
             itemStyle: {
-                normal: {
                     color: {
                         type: 'linear',
                         x: 0,
@@ -178,12 +169,11 @@ export const bar_option = {
                         }],
                         globalCoord: false // 缺省为 false
                     },
-                    label: {
-                        show: false,
-                        position: 'top',
-                        formatter: '{c}%'
-                    }
-                }
+            },
+            label: {
+                show: false,
+                position: 'top',
+                formatter: '{c}%'
             },
             data:[1500,2200,1700,1700,2300,5200,1700,2300,5200,1700,2300,5200]
         },

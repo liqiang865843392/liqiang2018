@@ -278,6 +278,10 @@ export const outer_radius = [
 ];
 export const spacing = [
     {
+        label:'0',
+        value:'0%'
+    },
+    {
         label:'10%',
         value:'10%'
     },
@@ -325,23 +329,23 @@ export const spacing = [
 export const location = [
     {
         label:'上侧',
-        value:'上侧'
+        value:'top'
     },
     {
         label:'下侧',
-        value:'下侧'
+        value:'bottom'
     },
     {
         label:'左侧',
-        value:'左侧'
+        value:'left'
     },
     {
         label:'右侧',
-        value:'右侧'
+        value:'right'
     },
     {
         label:'内部',
-        value:'内部'
+        value:'inside'
     }
 ];
 

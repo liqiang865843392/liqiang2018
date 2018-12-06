@@ -91,7 +91,7 @@
             padding-left: 0!important;
         }
         input{
-            width:100%!important;
+            /*width:100%!important;*/
             height:24px;
             color: rgba(255,255,255,1);
             border: none;
