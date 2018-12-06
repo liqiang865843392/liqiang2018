@@ -76,6 +76,7 @@
             this.$store.dispatch('set_cur_chart_type',this.options.series[0].type);
             setTimeout(()=>{
               this.save_and_update_thumb();
+              console.log(11116);
             },1000)
         },
           //echarts自适应

@@ -1,7 +1,7 @@
 <template>
         <!--编辑页面图表缩略图组件-->
         <div class="chart-thumb">
-            <div v-waves v-for="(item,index) in thumbs_Arr" :key="index"  :style="{backgroundImage:'url(' + item + ')'}" class="thumb" :class="{'thumb-active':cur_chart_index === index}" @click="_change_chart(index)">
+            <div v-waves v-for="(item,index) in $store.state.common.thumbs" :key="index"  :style="{backgroundImage:'url(' + item + ')'}" class="thumb" :class="{'thumb-active':cur_chart_index === index}" @click="_change_chart(index)">
                 <!--<img style="width:100%;height:180px;" :src="item" alt="">-->
             </div>
         </div>
@@ -17,25 +17,18 @@
       data(){
             return {
                 cur_chart_index : this.$store.state.common.cur_chart_index,
-                thumbs_Arr:[],
             }
         },
       computed:{
 
       },
       mounted(){
-          this.get_localstorge_thumbs();//读取本地缩略图
       },
       methods:{
           _change_chart(index){
               this.cur_chart_index = index;
               this.$store.dispatch('change_current_chart',index);//这里的index实际上就是当前选中图表的index
                 // console.log();
-          },
-          get_localstorge_thumbs(){//从localstorge中取当前缩略图(因为刷新后之前的缩略图会不显示，所以要存入localstorge)
-              let thumbs = localStorage.getItem("thumbs",this.$store.state.common.thumbs);
-              if(thumbs) this.thumbs_Arr = thumbs;
-              // console.log(6652,thumbs);
           }
       }
     }

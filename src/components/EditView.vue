@@ -232,8 +232,8 @@
             setTimeout(()=>{ //loading 默认显示1.5秒  因为要等待echart加载完成
                 this.loading=false;
             },1500);
-            window.onbeforeunload = function(event) {
-                return "您编辑的信息尚未保存，您确定要离开吗？"//这里内容不会显示在提示框，为了增加语义化。
+            window.onbeforeunload = (event)=> {
+                    return "您编辑的信息尚未保存，您确定要离开吗？"//这里内容不会显示在提示框，为了增加语义化。
             };
 
             this.mode_swiper = new Swiper('#swiper', {

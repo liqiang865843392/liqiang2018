@@ -330,12 +330,19 @@ export default{
       },
       //修改缩略图
       update_thumb(context,imgData){
-          console.log('编辑页面');
-          // console.log('编辑页面', imgData);
+          // console.log('编辑页面',context.state.thumbs);
           // console.log('state.cur_chart_index',state.cur_chart_index);
-          context.state.thumbs.forEach((item,index)=>{
+          if(context.state.thumbs.length === 0){//修改的时候如果store中没有缩略图就去本地获取一下
+              context.state.thumbs = sessionStorage.getItem("thumbs222").split('&%');
+              // console.log('thumbs35', context.state.thumbs);
+          }
+          context.state.thumbs.map((item,index)=>{
               if(index == context.state.cur_chart_index){//修改当前正在修改的图表的缩略图
                   context.state.thumbs.splice(index,1,imgData);
+                  sessionStorage.setItem("thumbs",null);//sessionStorage（防止刷新后缩略图消失）
+                  setTimeout(()=>{
+                      sessionStorage.setItem("thumbs222",context.state.thumbs.join('&%'));//sessionStorage（防止刷新后缩略图消失）
+                  },500)
                   // console.log('thumbs', context.state.thumbs);
                   // state.thumbs[index] = imgData;
               }
