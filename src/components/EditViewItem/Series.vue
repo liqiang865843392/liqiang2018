@@ -90,6 +90,9 @@
         .ivu-collapse-header{
             padding-left: 0!important;
         }
+        .ivu-collapse-content{
+            padding-right: 5px!important;
+        }
         input{
             /*width:100%!important;*/
             height:24px;

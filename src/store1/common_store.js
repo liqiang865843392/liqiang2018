@@ -1,5 +1,5 @@
 import {bar_option,area_option,bar_option_1,pie_option,line_option,scatter_option,radar_option,gauge_option,funnel_option,map_option} from '@/util/echarts_option.js';
-import {line_type,font_size,fontType,text_direction,algin_type,line_width,inside_radius,outer_radius,spacing,location,symbolType,funnel_algin,funnel_data_sort,funnel_label_location,gauge_angle} from '@/util/select_data.js';//导入选择菜单数据
+import {line_type,font_size,fontType,text_direction,algin_type,line_width,inside_radius,outer_radius,spacing,location,symbolType,funnel_algin,funnel_data_sort,funnel_label_location,gauge_angle,color_type} from '@/util/select_data.js';//导入选择菜单数据
 export default{
   state:{
       all_echarts:{
@@ -29,7 +29,8 @@ export default{
           funnel_algin:funnel_algin,//漏斗图中的对齐方式
           funnel_data_sort:funnel_data_sort,//漏斗图中的数据排序
           funnel_label_location:funnel_label_location,//漏斗图中的标签位置
-          gauge_angle:gauge_angle//仪表盘中的角度
+          gauge_angle:gauge_angle,//仪表盘中的角度
+          color_type:color_type//选择颜色类型
       },
       //所有模板的主标题数据
       main_title:['模板1主标题','模板2主标题','模板3主标题'],
@@ -214,12 +215,12 @@ export default{
                   new_options3.map_option.series[1].itemStyle.normal.color = 'rgba(245,192,1,.6)';
                   //配置模板3的柱状图样式
                   // console.log(666,bar_option3.series[0]);
-                  new_options3.bar_option.series[0].itemStyle.normal.color.colorStops[0].color = '#FF2A2AFF';
-                  new_options3.bar_option.series[0].itemStyle.normal.color.colorStops[1].color = '#FF1313FF';
-                  new_options3.bar_option.series[1].itemStyle.normal.color.colorStops[0].color = '#FFC600FF';
-                  new_options3.bar_option.series[1].itemStyle.normal.color.colorStops[1].color = '#FF9400FF';
-                  new_options3.bar_option.series[2].itemStyle.normal.color.colorStops[0].color = '#C500B4FF';
-                  new_options3.bar_option.series[2].itemStyle.normal.color.colorStops[1].color = '#94007DFF';
+                  new_options3.bar_option.series[0].itemStyle.color.colorStops[0].color = '#FF2A2AFF';
+                  new_options3.bar_option.series[0].itemStyle.color.colorStops[1].color = '#FF1313FF';
+                  new_options3.bar_option.series[1].itemStyle.color.colorStops[0].color = '#FFC600FF';
+                  new_options3.bar_option.series[1].itemStyle.color.colorStops[1].color = '#FF9400FF';
+                  new_options3.bar_option.series[2].itemStyle.color.colorStops[0].color = '#C500B4FF';
+                  new_options3.bar_option.series[2].itemStyle.color.colorStops[1].color = '#94007DFF';
                   //配置模板3的面积图样式
                   delete new_options3.area_option.series[1];
                   new_options3.area_option.series[0].lineStyle.width = 5;

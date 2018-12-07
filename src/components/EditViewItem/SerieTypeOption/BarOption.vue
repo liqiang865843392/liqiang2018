@@ -9,7 +9,7 @@
         </div>
         <div class="option-item">
             <span class="title-label">数值属性</span>
-            <TextInput  width="55" iconType="line-width-icon" tooltip="内容格式"   placeholder="内容格式" @onchange="set_bar_label_format" :value="get_bar_label_format"></TextInput>
+            <TextInput  width="55" iconType="line-width-icon" indent="8" tooltip="内容格式"   placeholder="内容格式" @onchange="set_bar_label_format" :value="get_bar_label_format"></TextInput>
             <!--<MySelect tooltip="内容格式" iconType="font-icon" @onchange="" value=""  :option="this.$store.state.common.select_option.fontType"></MySelect>-->
             <MySelect tooltip="数值位置" iconType="line-width-icon" @onchange="set_bar_label_position" :value="get_bar_label_position" :option="this.$store.state.common.select_option.location"></MySelect>
         </div>
@@ -27,7 +27,20 @@
             <span class="title-label" style="float:left;line-height: 30px;" >圆角半径</span>
             <TextInput style="float:left;width:70%;" title="" type='number'   placeholder="" @onchange="set_bar_barBorderRadius" :value="get_bar_barBorderRadius"></TextInput>
         </div>
-
+        <!--<div  class="choose-color p-15" style="height:30px;">-->
+            <!--<MyRadio  @onchange="set_color_type"  text="柱体颜色"  value=""  :option="this.$store.state.common.select_option.color_type"></MyRadio>-->
+            <!--<ChooseColor  v-show="colorType == 'once' " class="color-once" tooltip="颜色" iconType="font-icon" @onchange="" value=""></ChooseColor>-->
+        <!--</div>-->
+        <!--<div class="option-item gradient-option"  v-show="colorType == 'gradient'"  style="justify-content: flex-start!important;">-->
+            <!--<span class="title-label textInput">x:</span>-->
+            <!--<TextInput class="textInput"  title="" type='number'  textIndent="-5" :max=1  placeholder="" @onchange="set_bar_barBorderRadius" :value="get_bar_barBorderRadius"></TextInput>-->
+            <!--<span class="title-label textInput">y:</span>-->
+            <!--<TextInput class="textInput"  title=""  type='number' :max=1 textIndent="-5"  placeholder="" @onchange="set_bar_barBorderRadius" :value="get_bar_barBorderRadius"></TextInput>-->
+            <!--<span class="title-label textInput">x2:</span>-->
+            <!--<TextInput class="textInput"  title="" type='number'  :max=1  textIndent="-5"  placeholder="" @onchange="set_bar_barBorderRadius" :value="get_bar_barBorderRadius"></TextInput>-->
+            <!--<span class="title-label textInput">y2:</span>-->
+            <!--<TextInput class="textInput"  title="" type='number'   :max=1  textIndent="-5" placeholder="" @onchange="set_bar_barBorderRadius" :value="get_bar_barBorderRadius"></TextInput>-->
+        <!--</div>-->
     </div>
 </template>
 <script>
@@ -40,6 +53,11 @@
       created(){
 
       },
+     data(){
+        return {
+            colorType:'once',//颜色选择类型  默认为单色
+        }
+     },
       computed:{
           bar_label_show:{//item 标签显示
               get:function(){
@@ -112,11 +130,6 @@
               }
           }
       },
-      data(){
-            return {
-
-            }
-      },
       mounted(){
 
       },
@@ -149,6 +162,9 @@
               console.log(667,val);
               let data = {value:val,index:this.index};
               this.$store.dispatch('set_bar_barBorderRadius', data);
+          },
+          set_color_type(val){//修改颜色选择类别
+            this.colorType = val;
           }
       },
       components:{
@@ -160,7 +176,27 @@
         .option-item{
             padding-left:0!important;
             justify-content: space-between!important;
+            .textInput{
+                width:15%;
+                margin-right:5px;
+            }
         }
+        .choose-color{
+            position:relative;
+            .color-once{
+                position:absolute;
+                right: -18px;
+                top: 7px;
+            }
+        }
+        .gradient-option{
+            margin-top: 15px;
+            padding-right: 0!important;
+            /*border: 1px solid rgb(45, 140, 240);*/
+            background-color: rgba(81, 130, 228, 0.1);
+            box-shadow: 0 0 0 1px rgba(81, 130, 227, 0.15), inset 0 0 0 1px rgba(81, 130, 228, 0.43);
+        }
+
     }
 </style>
 

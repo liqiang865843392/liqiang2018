@@ -10,7 +10,7 @@
                         </Tooltip>
                     </div>
                     <div class="option-item">
-                        <MyRadio  @legend_align="legend_align"  text="对齐方式"  :value="get_legend_orient"  :option="this.$store.state.common.select_option.algin_type"></MyRadio>
+                        <MyRadio  @onchange="legend_align"  text="对齐方式"  :value="get_legend_orient"  :option="this.$store.state.common.select_option.algin_type"></MyRadio>
                     </div>
                     <div class="option-item">
                         <MySlider  @distance="distance" text="边界距离" :value="get_distance_val"></MySlider>

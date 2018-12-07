@@ -4,7 +4,7 @@
                 <Tooltip   v-if="iconType" :transfer=true :content="tooltip" placement="top" offset="-2">
                         <i class="icon" :class="setClass" ></i>
                 </Tooltip>
-                <InputNumber  v-if="type == 'number'" v-model="get_number_value"  :step=step :disabled="disabled"></InputNumber>
+                <InputNumber  v-if="type == 'number'" v-model="get_number_value"   :max=max  :min=min :step=step :disabled="disabled" :style="{textIndent:get_indent}"></InputNumber>
                 <span v-if="auto">
                       <Checkbox   v-if="type == 'number'"  style="font-weight: normal!important;margin-left: 15px;" v-model="get_checkbox">自动</Checkbox>
                 </span>
@@ -34,6 +34,14 @@
           step:{//数字框
               type:Number,
               default:1
+          },
+          min:{//数字框最小值
+              type:Number,
+              default:0
+          },
+          max:{//数字框最大值
+              type:Number,
+              default:999
           },
           type:{
               type:String,
@@ -109,7 +117,7 @@
  .ivu-input-number{
      position: relative;
      width:52%!important;
-     min-width:50px;
+     min-width:30px;
      height:24px!important;
      color: rgba(255,255,255,1);
      border: none!important;

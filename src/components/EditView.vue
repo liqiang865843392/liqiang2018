@@ -85,7 +85,6 @@
                  </div>
             </div>
 
-
                 <!--<CarouselItem class="developer-mode">-->
                     <!--<Icon type="ios-flask"  size="100" style="position: absolute;z-index:-1;left:50%;top:50%;transform: translate(-50%,-50%);opacity: 0.2"/>-->
 

@@ -56,7 +56,7 @@
       },
       methods:{
           _change(val){
-              this.$emit('legend_align',val);
+              this.$emit('onchange',val);
           }
       }
     }
@@ -73,7 +73,7 @@
     align-items: center;
     /*margin:12px 0;*/
     .text{
-        margin-right:5px;
+        margin-right:12px;
         color: rgba(255,255,255,.5);
         font-weight: 700;
     }

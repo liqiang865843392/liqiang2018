@@ -149,6 +149,18 @@ export const algin_type = [
         value:'vertical'
     },
 ];
+//颜色选择类型
+export const color_type = [
+    {
+        label:'单色',
+        value:'once'
+    },
+    {
+        label:'渐变色',
+        value:'gradient'
+    },
+];
+
 //标记类型
 export const symbolType = [
     {
