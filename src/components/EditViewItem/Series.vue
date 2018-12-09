@@ -15,7 +15,7 @@
             <Collapse accordion style="">
                 <!--给每个组件传index是为了，每个组件中多系列的时候需要知道要修改的是哪一个系列-->
                 <Panel v-for="(item,index) in get_series_count" :key="index">
-                    <span class="main-color">系列 {{index+1}}</span>
+                    <span class="main-color">图形 {{index+1}}</span>
                     <p slot="content">
                         <BarOption v-if="cur_chart_type == 'bar'" :index="index"></BarOption>
                         <LineOption v-else-if="cur_chart_type == 'line'" :index="index"></LineOption>

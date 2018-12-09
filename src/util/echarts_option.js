@@ -96,21 +96,21 @@ export const bar_option = {
             barGap: '0%', // Make series be overlap
             barCategoryGap: 1,
             itemStyle: {
-                    color: {
-                        type: 'linear',
-                        x: 0,
-                        y: 0,
-                        x2: 0,
-                        y2: 1,
-                        colorStops: [{
-                            offset: 0,
-                            color: '#FFEC44' // 0% 处的颜色
-                        }, {
-                            offset: 1,
-                            color: '#FFA920' // 100% 处的颜色
-                        }],
-                        globalCoord: false // 缺省为 false
-                    },
+            //         color: {
+            //             type: 'linear',
+            //             x: 0,
+            //             y: 0,
+            //             x2: 0,
+            //             y2: 1,
+            //             colorStops: [{
+            //                 offset: 0.2,
+            //                 color: '#FFEC44' // 0% 处的颜色
+            //             }, {
+            //                 offset: 0.9,
+            //                 color: '#FFA920' // 100% 处的颜色
+            //             }],
+            //             globalCoord: false // 缺省为 false
+            //         },
             },
             stack: '',
             data:[2800,3500,6300,2800,3500,6300,2800,3500,6300,2800,3500,6300],
