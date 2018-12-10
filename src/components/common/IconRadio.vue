@@ -29,6 +29,7 @@
       },
       data(){
             return {
+                state:false
             }
       },
       mounted(){
@@ -36,7 +37,9 @@
       },
       methods:{
           _clicked(){
-              this.$emit('onchange',this.value ? 'bold' : 'normal');
+              // this.$emit('onchange',this.value ? 'bold' : 'normal');
+              this.state =  !this.state;
+              this.$emit('onchange', this.state);
           }
       },
       components:{

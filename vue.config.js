@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 module.exports = {
     // 基本路径
     baseUrl: '/',
@@ -9,6 +10,13 @@ module.exports = {
     // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
     chainWebpack: () => { },
     configureWebpack: () => {
+        plugins: [
+            new webpack.ProvidePlugin({
+                jQuery: 'jquery',
+                $: 'jquery'
+            })
+        ]
+
     },
     // vue-loader 配置项
     // https://vue-loader.vuejs.org/en/options.html

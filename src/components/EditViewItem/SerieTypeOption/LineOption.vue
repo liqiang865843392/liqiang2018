@@ -18,7 +18,7 @@
             <span class="title-label mr10">标签属性</span>
             <MySelect  class="mr10" tooltip="数值位置" iconType="line-width-icon" @onchange="set_line_label_attr('position',$event)" :value="get_line_label_attr('position','top')" :option="this.$store.state.common.select_option.location"></MySelect>
             <ChooseColor  class="mr10" iconType="font-icon" tooltip="字体色" @onchange="set_line_label_attr('color',$event)"  :value="get_line_label_attr('color','#fff')"></ChooseColor>
-            <IconRadio  icon="md-color-wand" @onchange="set_line_label_attr('fontWeight',$event)"  :value="get_line_label_attr('fontWeight','normal')" tooltip="加粗" ></IconRadio>
+            <IconRadio  icon="md-color-wand" @onchange="set_line_label_attr('fontWeight',$event)"  :value="get_line_label_fontWeight" tooltip="加粗" ></IconRadio>
         </div>
         <div class="option-item" style="">
             <span class="title-label mr10">字体属性</span>
@@ -106,6 +106,15 @@
                       return _default;
                   }
               }
+          },
+          get_line_label_fontWeight(){//获取折线标签是否加粗
+              let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
+              if(_series  && _series[this.index].hasOwnProperty("label") && _series[this.index].label.hasOwnProperty("fontWeight")){
+                  if(_series[this.index].label.fontWeight == 'normal'){
+                      return false;
+                  }
+                  return true;
+              }
           }
       },
       data(){
@@ -122,6 +131,7 @@
               this.$store.dispatch('set_line_attr',data);
           },
           set_line_label_attr(type,val){//修改折线label的属性
+              console.log('val222',val);
               let data = {type:type,value:val,index:this.index};
               this.$store.dispatch('set_line_label_attr', data);
           },
