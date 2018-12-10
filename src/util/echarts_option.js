@@ -94,8 +94,8 @@ export const bar_option = {
             name:'数据1',
             type:'bar',
             barGap: '0%', // Make series be overlap
-            barCategoryGap: 1,
-            itemStyle: {
+            barCategoryGap: '0%',
+            // itemStyle: {
             //         color: {
             //             type: 'linear',
             //             x: 0,
@@ -111,7 +111,7 @@ export const bar_option = {
             //             }],
             //             globalCoord: false // 缺省为 false
             //         },
-            },
+            // },
             stack: '',
             data:[2800,3500,6300,2800,3500,6300,2800,3500,6300,2800,3500,6300],
             label: {
@@ -177,6 +177,126 @@ export const bar_option = {
             },
             data:[1500,2200,1700,1700,2300,5200,1700,2300,5200,1700,2300,5200]
         },
+    ]
+};
+//折线图
+export const line_option = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        icon: 'rect',
+        itemWidth: 10,
+        itemHeight: 6,
+        itemGap: 13,
+        data: ['接口响应时间'],
+        right: '4%',
+        textStyle: {
+            fontSize: 12,
+            color: '#999999'
+        }
+    },
+    // grid: {
+    //     left: '2%',
+    //     right: '4%',
+    //     top: '300',
+    //     bottom: '200',
+    // },
+    xAxis: {
+        type: 'category',
+        show:false,
+        axisLine: {
+            show:true,
+            lineStyle:{
+                color: '#fff',
+                type:'solid',
+                width:0
+            }
+        },
+        axisTick:{
+            show:true,
+            lineStyle:{
+                color:"#fff",
+                type:'solid'
+            }
+        },
+        axisLabel: {
+            show:true,
+            color: '#666',
+            fontSize: 12,
+            rotate:0
+        },
+        splitLine:{
+            show:false
+        },
+        boundaryGap: false,
+        data: ['1', '2', '3', '4', '5', '6', '7', '8','9','10','11','12','13','14','15']
+    },
+    yAxis: {
+        name: '单位:ms',
+        max:null,
+        min:null,
+        show:false,
+        nameTextStyle: {
+            color: '#777',
+            fontSize: 12
+        },
+        axisLine: {
+            show:false,
+            lineStyle: {
+                color: '#EEEEEE'
+            }
+        },
+        type: 'value',
+        axisLabel: {
+            show: true,
+            interval: '0',
+            color: '#666',
+        },
+        splitLine: {
+            show: false,
+            lineStyle: {
+                color: '#eeeeee',
+                type: 'solid'
+            },
+        },
+    },
+    series: [
+        {
+            name: '接口响应时间',
+            color: ['red'],
+            type: 'line',
+            smooth: true,
+            symbol:'emptyCircle',
+            showSymbol:true,
+            symbolSize:5,
+            label:{
+              show:false
+            },
+            itemStyle: {
+                    color: {
+                        type: 'linear',
+                        x: 0,
+                        y: 0,
+                        x2: 1,
+                        y2: 0,
+                        colorStops: [{
+                            offset: 0,
+                            color: '#fbfa96' // 0% 处的颜色
+                        }, {
+                            offset: 1,
+                            color: '#f72806' // 100% 处的颜色
+                        }],
+                        globalCoord: false // 缺省为 false
+                    },
+                    opacity: 0.4
+            },
+            lineStyle: {
+                width: 3, //折线宽度
+            },
+            data: [646, 256, 86, 1165, 563, 423, 236, 3165, 1532, 369,456,166,1235, 656, 415]
+        }
+
     ]
 };
 //面积图
@@ -642,123 +762,6 @@ export const pie_option = {
             data: RealData,
 
         },
-
-    ]
-};
-
-//折线图
-export const line_option = {
-    tooltip: {
-        trigger: 'axis'
-    },
-    legend: {
-        icon: 'rect',
-        itemWidth: 10,
-        itemHeight: 6,
-        itemGap: 13,
-        data: ['接口响应时间'],
-        right: '4%',
-        textStyle: {
-            fontSize: 12,
-            color: '#999999'
-        }
-    },
-    // grid: {
-    //     left: '2%',
-    //     right: '4%',
-    //     top: '300',
-    //     bottom: '200',
-    // },
-    xAxis: {
-        type: 'category',
-        show:false,
-        axisLine: {
-            show:true,
-            lineStyle:{
-                color: '#fff',
-                type:'solid',
-                width:0
-            }
-        },
-        axisTick:{
-            show:true,
-            lineStyle:{
-                color:"#fff",
-                type:'solid'
-            }
-        },
-        axisLabel: {
-            show:true,
-            color: '#666',
-            fontSize: 12,
-            rotate:0
-        },
-        splitLine:{
-            show:false
-        },
-        boundaryGap: false,
-        data: ['1', '2', '3', '4', '5', '6', '7', '8','9','10','11','12','13','14','15']
-    },
-    yAxis: {
-        name: '单位:ms',
-        max:null,
-        min:null,
-        show:false,
-        nameTextStyle: {
-            color: '#777',
-            fontSize: 12
-        },
-        axisLine: {
-            show:false,
-            lineStyle: {
-                color: '#EEEEEE'
-            }
-        },
-        type: 'value',
-        axisLabel: {
-            show: true,
-            interval: '0',
-            color: '#666',
-        },
-        splitLine: {
-            show: false,
-            lineStyle: {
-                color: '#eeeeee',
-                type: 'solid'
-            },
-        },
-    },
-    series: [
-        {
-            name: '接口响应时间',
-            color: ['red'],
-            type: 'line',
-            smooth: true,
-            itemStyle: {
-                normal: {
-                    lineStyle: {
-                        width: 3, //折线宽度
-                    },
-                    color: {
-                        type: 'linear',
-                        x: 0,
-                        y: 0,
-                        x2: 1,
-                        y2: 0,
-                        colorStops: [{
-                            offset: 0,
-                            color: '#fbfa96' // 0% 处的颜色
-                        }, {
-                            offset: 1,
-                            color: '#f72806' // 100% 处的颜色
-                        }],
-                        globalCoord: false // 缺省为 false
-                    },
-                    opacity: 0.4
-                }
-            },
-            data: [646, 256, 86, 1165, 563, 423, 236, 3165, 1532, 369,456,166,1235, 656, 415]
-        }
 
     ]
 };

@@ -11,59 +11,25 @@
                 </div>
                 <div class="option-item">
                     <span class="title-label">数值属性</span>
-                    <TextInput  width="55" iconType="line-width-icon" indent="8" tooltip="内容格式"   placeholder="内容格式" @onchange="set_bar_label_format" :value="get_bar_label_format"></TextInput>
+                    <TextInput  width="55" iconType="line-width-icon" indent="8" tooltip="内容格式"   placeholder="内容格式" @onchange="set_bar_label_attr('formatter',$event)" :value="get_bar_label_attr('formatter','{b}')"></TextInput>
                     <!--<MySelect tooltip="内容格式" iconType="font-icon" @onchange="" value=""  :option="this.$store.state.common.select_option.fontType"></MySelect>-->
-                    <MySelect tooltip="数值位置" iconType="line-width-icon" @onchange="set_bar_label_position" :value="get_bar_label_position" :option="this.$store.state.common.select_option.location"></MySelect>
+                    <MySelect tooltip="数值位置" iconType="line-width-icon" @onchange="set_bar_label_attr('position',$event)" :value="get_bar_label_attr('position','inside')" :option="this.$store.state.common.select_option.location"></MySelect>
                 </div>
                 <div class="option-item">
                     <span class="title-label">文字属性</span>
-                    <MySelect style="margin-left: -18px;" tooltip="字号" iconType="line-width-icon"  @onchange="set_bar_label_fontSize"  :value="get_bar_label_fontSize" :option="this.$store.state.common.select_option.font_size"></MySelect>
-                    <ChooseColor tooltip="字体色" iconType="font-icon" @onchange="set_bar_label_color" :value="get_bar_label_color"></ChooseColor>
+                    <MySelect style="margin-left: -18px;" tooltip="字号" iconType="line-width-icon"  @onchange="set_bar_label_attr('fontSize',$event)"  :value="get_bar_label_attr('fontSize',12)" :option="this.$store.state.common.select_option.font_size"></MySelect>
+                    <ChooseColor tooltip="字体色" iconType="font-icon" @onchange="set_bar_label_attr('color',$event)" :value="get_bar_label_attr('color','#fff')"></ChooseColor>
                 </div>
                 <div class="option-item">
                     <span class="title-label">柱形配置</span>
-                    <MySelect tooltip="柱间距" iconType="line-width-icon" @onchange="set_bar_barGap" :value="get_bar_barGap" :option="this.$store.state.common.select_option.spacing"></MySelect>
-                    <MySelect tooltip="柱组间距" iconType="font-icon" @onchange="set_bar_barCategoryGap"  :value="get_bar_barCategoryGap"  :option="this.$store.state.common.select_option.spacing"></MySelect>
+                    <MySelect tooltip="柱间距" iconType="line-width-icon" @onchange="set_bar_attr('barGap',$event)" :value="get_bar_attr('barGap','30%')" :option="this.$store.state.common.select_option.spacing"></MySelect>
+                    <MySelect tooltip="柱组间距" iconType="font-icon" @onchange="set_bar_attr('barCategoryGap',$event)"  :value="get_bar_attr('barCategoryGap','20%')"  :option="this.$store.state.common.select_option.spacing"></MySelect>
                 </div>
                 <div class="option-item"  style="height:30px;">
                     <span class="title-label" style="float:left;line-height: 30px;" >圆角半径</span>
-                    <TextInput style="float:left;width:70%;" title="" type='number'   width="100"  placeholder="" @onchange="set_bar_barBorderRadius" :value="get_bar_barBorderRadius"></TextInput>
+                    <TextInput style="float:left;width:70%;" title="" type='number'   width="100"  placeholder="" @onchange="set_bar_itemStyle_attr('barBorderRadius',$event)" :value="get_bar_itemStyle_attr('barBorderRadius',0)"></TextInput>
                 </div>
-                <div  class="choose-color p-15" style="height:30px;">
-                    <MyRadio  @onchange="set_color_type"  text="颜色类型"  :value="get_color_type"  :option="this.$store.state.common.select_option.color_type"></MyRadio>
-                    <ChooseColor  v-show="colorType == 'once' " class="color-once" tooltip="颜色" iconType="font-icon" @onchange="set_once_color" :value="get_once_color"></ChooseColor>
-                </div>
-                <div class="gradient-option"  v-show="colorType == 'gradient'">
-                    <div class="option-item" style="justify-content: flex-start!important;">
-                        <span class="title-label" style="width:40px;">x轴:</span>
-                        <span class="title-label textInput">x:</span>
-                        <TextInput class=""  title="" type='number'  width="50" style="margin-right:20px;" textIndent="5" :max=1  placeholder="" @onchange="set_bar_gradient_x" :value="get_bar_gradient_x"></TextInput>
-                        <span class="title-label textInput">x2:</span>
-                        <TextInput class=""  title="" type='number'  width="50" :max=1  textIndent="5"  placeholder="" @onchange="set_bar_gradient_x2" :value="get_bar_gradient_x2"></TextInput>
-                    </div>
-                    <div class="option-item" style="justify-content: flex-start!important;padding:0 10px">
-                        <span class="title-label" style="width:40px;">y轴:</span>
-                        <span class="title-label textInput">y:</span>
-                        <TextInput class=""  title="" type='number'  width="50" style="margin-right:20px;" textIndent="5" :max=1  placeholder="" @onchange="set_bar_gradient_y" :value="get_bar_gradient_y"></TextInput>
-                        <span class="title-label textInput">y2:</span>
-                        <TextInput class=""  title="" type='number'  width="50" :max=1  textIndent="5"  placeholder="" @onchange="set_bar_gradient_y2" :value="get_bar_gradient_y2"></TextInput>
-                    </div>
-                    <div class="option-item" style="margin-top:5px;">
-                        <span class="title-label" style="width:40px;color:rgba(45, 140, 240,.7) !important">渐变组</span>
-                        <Tooltip  :transfer=true content="添加渐变" placement="top" class="" offset="">
-                            <Icon type="ios-add-circle" size="20" class="add-gradient" @click="add_gradient"/>
-                        </Tooltip>
-                    </div>
-                    <div class="option-item gradient-item" style="" v-for="(item,index) in get_gradient_color">
-                        <span class="title-label" style="">位置:&nbsp;&nbsp;</span>
-                        <TextInput class=""  title="" type='number'  width="50" style="margin-right:12px;" :step="0.1" textIndent="5" :max=1  placeholder="" @onchange="set_gradient_position(index,$event)" :value="item.offset"></TextInput>
-                        <span class="title-label" style="">颜色:&nbsp;&nbsp;</span>
-                        <ChooseColor class="" tooltip="颜色" iconType="font-icon" @onchange="set_gradient_color(index,$event)" :value="item.color"></ChooseColor>
-                        <Tooltip  :transfer=true content="删除" placement="top" class="remove" offset="">
-                            <Icon type="ios-close-circle" size="20" @click="remove_gradient(index)"/>
-                        </Tooltip>
-                    </div>
-                </div>
+                <GradientOption :index="index" class="m-12"></GradientOption>
             </div>
             <div slot="two">
                 <div style="margin-left: -18px;margin-right:-7px;margin-top: -8px;" >
@@ -78,6 +44,7 @@
 </template>
 <script>
     import DataSwiper from '@/components/common/DataSwiper'
+    import GradientOption from '@/components/common/GradientOption'
     export default {
       props: {
           index:{
@@ -89,7 +56,7 @@
       },
      data(){
         return {
-            colorType:'once',//颜色选择类型  默认为单色
+
         }
      },
       computed:{
@@ -98,7 +65,7 @@
               console.log('series_data',series_data);
               return series_data && series_data.length > 0 ? series_data : [];
           },
-          bar_label_show:{//item 标签显示
+          bar_label_show:{//标签显示
               get:function(){
                   let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
                   if(_series  && _series[this.index].hasOwnProperty("label") && _series[this.index].label.hasOwnProperty("show")){
@@ -108,128 +75,97 @@
                   }
               },
               set:function(value) {
-                  let data = {value:value,index:this.index};
-                  this.$store.dispatch('set_bar_label_show', data);
+                  let data = {type:'show',value:value,index:this.index};
+                  this.$store.dispatch('set_bar_label_attr', data);
               }
           },
-          get_bar_label_format(){//获取标签格式
-              let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
-              if(_series &&  _series[this.index].hasOwnProperty("label") && _series[this.index].label.hasOwnProperty("formatter")){
-                  return _series[this.index].label.formatter;
-              }else{
-                  return '{b}%';
-              }
+          get_bar_label_attr(type,_default){//修改标签属性  type:属性名 _default:默认值
+                return function(type,_default){
+                    let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
+                    if(_series && _series[this.index].hasOwnProperty("label") &&  _series[this.index].label.hasOwnProperty(type)){
+                        return _series[this.index].label[type];
+                    }else{//没有值 使用默认值
+                        return _default;
+                    }
+                }
           },
-          get_bar_label_position(){//获取标签位置
-              let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
-              if(_series && _series[this.index].hasOwnProperty("label")  &&  _series[this.index].label.hasOwnProperty("position")){
-                  return _series[this.index].label.position;
-              }else{
-                  return 'inside';
-              }
-          },
-          get_bar_label_fontSize(){//获取标签的字号
-              let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
-              if(_series && _series[this.index].hasOwnProperty("label")  &&  _series[this.index].label.hasOwnProperty("fontSize")){
-                  return _series[this.index].label.fontSize;
-              }else{
-                  return '12';
-              }
-          },
-          get_bar_label_color(){//获取标签的颜色
-              let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
-              if(_series && _series[this.index].hasOwnProperty("label")  &&  _series[this.index].label.hasOwnProperty("color")){
-                  return _series[this.index].label.color;
-              }else{
-                  return '#fff';
-              }
-          },
-          get_bar_barGap(){//获取柱间距
-              let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
-              if(_series &&  _series[this.index].hasOwnProperty("barGap")){
-                  return _series[this.index].barGap;
-              }else{
-                  return '30%';
-              }
-          },
-          get_bar_barCategoryGap(){//获取柱组间距
-              let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
-              if(_series &&  _series[this.index].hasOwnProperty("barCategoryGap")){
-                  return _series[this.index].barCategoryGap;
-              }else{
-                  return '20%';
-              }
-          },
-          get_bar_barBorderRadius(){//获取圆角
-              let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
-              if(_series && _series[this.index].hasOwnProperty("itemStyle") && _series[this.index].itemStyle.hasOwnProperty("barCategoryGap")){
-                  return _series[this.index].itemStyle.barCategoryGap;
-              }else{
-                  return 0;
-              }
-          },
-          get_color_type(){//获取颜色类型
-              let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
-              if(_series && _series[this.index].hasOwnProperty("itemStyle")) {
-                  //如果是数组 说明是渐变 反之是单色
-                  if( _series[this.index].itemStyle.color instanceof Object){
-                      this.colorType =  'gradient';
-                      return  'gradient';
-                  }else{//单色
-                      this.colorType =  'once';
-                      return  'once'
+          get_bar_attr(type,_default){//修改柱形属性  type:属性名 _default:默认值
+              return function(type,_default){
+                  let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
+                  if(_series && _series[this.index].hasOwnProperty(type)){
+                      return _series[this.index][type];
+                  }else{//没有值 使用默认值
+                      return _default;
                   }
-               }
-              },
-          get_once_color(){//获取单色颜色
-              let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
-              if(_series && _series[this.index].hasOwnProperty("itemStyle") && _series[this.index].itemStyle.hasOwnProperty("color") && !_series[this.index].itemStyle.color instanceof Array){
-                  //如果是数组 说明是渐变 反之是单色
-                  return _series[this.index].itemStyle.color;
-              }else{
-                  return '#fff';
               }
           },
-          get_bar_gradient_x(){//获取渐变颜色x
-              let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
-              if(_series && _series[this.index].hasOwnProperty("itemStyle") && _series[this.index].itemStyle.hasOwnProperty("color") && _series[this.index].itemStyle.color.hasOwnProperty("x")){
-                  return _series[this.index].itemStyle.color.x;
-              }else{
-                  return 0;
+          get_bar_itemStyle_attr(type,_default){//修改柱形itemStyle属性  type:属性名 _default:默认值
+              return function(type,_default){
+                  let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
+                  if(_series && _series[this.index].hasOwnProperty("itemStyle") &&  _series[this.index].itemStyle.hasOwnProperty(type)){
+                      return _series[this.index].itemStyle[type];
+                  }else{//没有值 使用默认值
+                      return _default;
+                  }
               }
           },
-          get_bar_gradient_x2(){//获取渐变颜色x2
-              let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
-              if(_series && _series[this.index].hasOwnProperty("itemStyle") && _series[this.index].itemStyle.hasOwnProperty("color") && _series[this.index].itemStyle.color.hasOwnProperty("x2")){
-                  return _series[this.index].itemStyle.color.x2;
-              }else{
-                  return 0;
-              }
-          },
-          get_bar_gradient_y(){//获取渐变颜色y
-              let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
-              if(_series && _series[this.index].hasOwnProperty("itemStyle") && _series[this.index].itemStyle.hasOwnProperty("color") && _series[this.index].itemStyle.color.hasOwnProperty("y")){
-                  return _series[this.index].itemStyle.color.y;
-              }else{
-                  return 0;
-              }
-          },
-          get_bar_gradient_y2(){//获取渐变颜色y2
-              let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
-              if(_series && _series[this.index].hasOwnProperty("itemStyle") && _series[this.index].itemStyle.hasOwnProperty("color") && _series[this.index].itemStyle.color.hasOwnProperty("y2")){
-                  return _series[this.index].itemStyle.color.y2;
-              }else{
-                  return 0;
-              }
-          },
-          get_gradient_color(){//获取渐变颜色
-              let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
-              if(_series && _series[this.index].hasOwnProperty("itemStyle") && _series[this.index].itemStyle.hasOwnProperty("color") && _series[this.index].itemStyle.color.hasOwnProperty("colorStops")){
-                  return _series[this.index].itemStyle.color.colorStops;
-              }else{
-                  return [];
-              }
-          }
+          //以下注释部分被闭包替换，暂时不用  如果到时候有闭包引起的性能问题 可以改为注释代码
+          // get_bar_label_format(){//获取标签格式
+          //     let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
+          //     if(_series &&  _series[this.index].hasOwnProperty("label") && _series[this.index].label.hasOwnProperty("formatter")){
+          //         return _series[this.index].label.formatter;
+          //     }else{
+          //         return '{b}%';
+          //     }
+          // },
+          // get_bar_label_position(){//获取标签位置
+          //     let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
+          //     if(_series && _series[this.index].hasOwnProperty("label")  &&  _series[this.index].label.hasOwnProperty("position")){
+          //         return _series[this.index].label.position;
+          //     }else{
+          //         return 'inside';
+          //     }
+          // },
+          // get_bar_label_fontSize(){//获取标签的字号
+          //     let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
+          //     if(_series && _series[this.index].hasOwnProperty("label")  &&  _series[this.index].label.hasOwnProperty("fontSize")){
+          //         return _series[this.index].label.fontSize;
+          //     }else{
+          //         return '12';
+          //     }
+          // },
+          // get_bar_label_color(){//获取标签的颜色
+          //     let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
+          //     if(_series && _series[this.index].hasOwnProperty("label")  &&  _series[this.index].label.hasOwnProperty("color")){
+          //         return _series[this.index].label.color;
+          //     }else{
+          //         return '#fff';
+          //     }
+          // },
+          // get_bar_barGap(){//获取柱间距
+          //     let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
+          //     if(_series &&  _series[this.index].hasOwnProperty("barGap")){
+          //         return _series[this.index].barGap;
+          //     }else{
+          //         return '30%';
+          //     }
+          // },
+          // get_bar_barCategoryGap(){//获取柱组间距
+          //     let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
+          //     if(_series &&  _series[this.index].hasOwnProperty("barCategoryGap")){
+          //         return _series[this.index].barCategoryGap;
+          //     }else{
+          //         return '20%';
+          //     }
+          // },
+          // get_bar_barBorderRadius(){//获取圆角
+          //     let _series =  this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.series;
+          //     if(_series && _series[this.index].hasOwnProperty("itemStyle") && _series[this.index].itemStyle.hasOwnProperty("barCategoryGap")){
+          //         return _series[this.index].itemStyle.barCategoryGap;
+          //     }else{
+          //         return 0;
+          //     }
+          // },
       },
       mounted(){
 
@@ -245,76 +181,21 @@
               let send_data = {data:data,index:this.index};
               this.$store.dispatch('edit_series_data',send_data);
           },
-          set_bar_label_format(val){
-              let data = {value:val,index:this.index};
-              this.$store.dispatch('set_bar_label_format', data);
+          set_bar_label_attr(type,val){//修改柱形中的标签属性
+              let data = {type:type,value:val,index:this.index};
+              this.$store.dispatch('set_bar_label_attr', data);
           },
-          set_bar_label_position(val){//改变标签的位置
-              let data = {value:val,index:this.index};
-              this.$store.dispatch('set_bar_label_position', data);
+          set_bar_attr(type,val){//修改柱形的属性
+              let data = {type:type,value:val,index:this.index};
+              this.$store.dispatch('set_bar_attr',data);
           },
-          set_bar_label_fontSize(val){//改变标签的字号
-              let data = {value:val,index:this.index};
-              this.$store.dispatch('set_bar_label_fontSize', data);
+          set_bar_itemStyle_attr(type,val){//修改柱形itemStyle属性
+              let data = {type:type,value:val,index:this.index};
+              this.$store.dispatch('set_bar_itemStyle_attr',data);
           },
-          set_bar_label_color(val){//改变标签的颜色
-              let data = {value:val,index:this.index};
-              this.$store.dispatch('set_bar_label_color', data);
-          },
-          set_bar_barGap(val){//改变柱间距
-              let data = {value:val,index:this.index};
-              this.$store.dispatch('set_bar_barGap', data);
-          },
-          set_bar_barCategoryGap(val){//修改柱组间距
-              let data = {value:val,index:this.index};
-              this.$store.dispatch('set_bar_barCategoryGap', data);
-          },
-          set_bar_barBorderRadius(val){//修改圆角
-              console.log(667,val);
-              let data = {value:val,index:this.index};
-              this.$store.dispatch('set_bar_barBorderRadius', data);
-          },
-          set_color_type(val){//修改颜色选择类别
-            this.colorType = val;
-          },
-          set_once_color(val){//设置单色
-              let data = {value:val,index:this.index};
-              this.$store.dispatch('set_once_color',data);
-          },
-          set_bar_gradient_x(val){//修改渐变x
-              let data = {value:val,index:this.index};
-              this.$store.dispatch('set_bar_gradient_x',data);
-          },
-          set_bar_gradient_x2(val){//修改渐变x2
-              let data = {value:val,index:this.index};
-              this.$store.dispatch('set_bar_gradient_x2',data);
-          },
-          set_bar_gradient_y(val){//修改渐变y
-              let data = {value:val,index:this.index};
-              this.$store.dispatch('set_bar_gradient_y',data);
-          },
-          set_bar_gradient_y2(val){//修改渐变y2
-              let data = {value:val,index:this.index};
-              this.$store.dispatch('set_bar_gradient_y2',data);
-          },
-          add_gradient(){//添加渐变项
-              this.$store.dispatch('add_bar_gradient', this.index);
-          },
-          set_gradient_color(g_index,val){//修改渐变色
-              let data = {value:val,series_index:this.index,g_index:g_index};
-              this.$store.dispatch('set_bar_gradient_color', data);
-          },
-          set_gradient_position(g_index,val){//修改渐变位置
-              let data = {value:val,series_index:this.index,g_index:g_index};
-              this.$store.dispatch('set_bar_gradient_position', data);
-          },
-          remove_gradient(g_index){//删除渐变
-              let data = {series_index:this.index,g_index:g_index};
-              this.$store.dispatch('remove_bar_gradient',data);
-          }
       },
       components:{
-          DataSwiper
+          DataSwiper,GradientOption
       }
     }
 </script>
@@ -328,44 +209,6 @@
                 margin-right:5px;
             }
         }
-        .choose-color{
-            position:relative;
-            .color-once{
-                position:absolute;
-                right: -18px;
-                top: 7px;
-            }
-        }
-        .gradient-option{
-            margin-top: 15px;
-            border-radius: 5px;
-            padding:0 10px;
-            /*border: 1px solid rgb(45, 140, 240);*/
-            background-color: rgba(81, 130, 228, 0.1);
-            box-shadow: 0 0 0 1px rgba(81, 130, 227, 0.15), inset 0 0 0 1px rgba(81, 130, 228, 0.43);
-            .add-gradient{//添加渐变
-                /*margin-right:10px;*/
-            }
-            .add-gradient:hover{
-                cursor: pointer;
-                color:rgb(45, 140, 240);
-            }
-            .gradient-item{//渐变项
-                position: relative;
-                justify-content: flex-start!important;
-                padding: 0 0 10px;
-                .remove{//删除渐变
-                    position:absolute;
-                    right:0;
-                }
-                .remove:hover{
-                    cursor: pointer;
-                    color:rgb(45, 140, 240);
-                }
-            }
-
-        }
-
     }
 </style>
 

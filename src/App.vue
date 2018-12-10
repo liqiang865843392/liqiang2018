@@ -57,6 +57,9 @@ export default {
  .mt10{
    margin-bottom:10px;
  }
+ .mr10{
+   margin-right:10px;
+ }
   /*修改swiper样式*/
   .swiper-container{
      overflow: inherit!important;

@@ -10,6 +10,7 @@ import yAxis_store from './yAxis_store.js';//引入y轴store
 import developer_store from './developer_store.js';//引入开发者模式(编辑器)store
 
 import bar_store from './series/bar_store.js';//引入柱状图store
+import line_store from './series/line_store.js';//引入柱状图store
 
 export default new vuex.Store({
   modules: {
@@ -20,5 +21,6 @@ export default new vuex.Store({
       title:  title_store,
       developer:  developer_store,
       bar_store:  bar_store,
+      line_store:  line_store,
   }
 })

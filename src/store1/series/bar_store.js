@@ -9,69 +9,58 @@ export default{
 
     },
     actions:{
-        set_bar_label_show(context,data){ //柱形图标签显示
+        set_bar_label_attr(context,data){//设置柱形标签样式
             let option = this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option;
-            option.series[data.index].label.show = data.value;
+            let _type = data.type;//传入的要设置的属性
+            if(option.series && option.series[data.index].hasOwnProperty("label")){
+                option.series[data.index].label[_type] = data.value;
+            }else{//不包含label属性
+                option.series[data.index].label={_type:data.value};
+            }
             this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option)
         },
-        set_bar_label_format(context,data){//修改标签内容格式
+        set_bar_attr(context,data){//设置柱形属性
             let option = this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option;
-            option.series[data.index].label.formatter = data.value;
+            let _type = data.type;//传入的要设置的属性
+            if(option.series && option.series[data.index]){
+                option.series[data.index][_type] = data.value;
+            }
             this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option)
         },
-        set_bar_label_position(context,data){//改变标签的位置
+        set_bar_itemStyle_attr(context,data){//设置柱形itemStyle属性
             let option = this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option;
-            option.series[data.index].label.position = data.value;
-            this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option);
-        },
-        set_bar_label_fontSize(context,data){//改变标签的字号
-            let option = this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option;
-            option.series[data.index].label.fontSize = data.value;
-            this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option);
-        },
-        set_bar_label_color(context,data){//改变标签的颜色
-            let option = this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option;
-            option.series[data.index].label.color = data.value;
-            this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option);
-        },
-        set_bar_barGap(context,data){//改变柱形间距
-            let option = this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option;
-            option.series[data.index].barGap = data.value;
-            this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option);
-        },
-        set_bar_barCategoryGap(context,data){//修改柱组间距
-            let option = this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option;
-            option.series[data.index].barCategoryGap = data.value;
-            this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option);
-        },
-        set_bar_barBorderRadius(context,data){//修改圆角
-            let option = this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option;
-            option.series[data.index].itemStyle.barBorderRadius = data.value;
-            this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option);
+            let _type = data.type;//传入的要设置的属性
+            if(option.series && option.series[data.index].hasOwnProperty("itemStyle")){
+                option.series[data.index].itemStyle[_type] = data.value;
+            }else{//不包含itemStyle属性
+                option.series[data.index].itemStyle={_type:data.value};
+            }
+            this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option)
         },
         set_once_color(context,data){//设置单色
             let option = this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option;
-            option.series[data.index].itemStyle.color = data.value;
+            if(option.series && option.series[data.index].hasOwnProperty("itemStyle")){
+                option.series[data.index].itemStyle.color = data.value;
+            }else{//没有itemStyle
+                option.series[data.index].itemStyle = {};
+                option.series[data.index].itemStyle.color = data.value;
+            }
             this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option);
         },
-        set_bar_gradient_x(context,data){//设置渐变x
+        set_bar_gradient_grid(context,data){//设置渐变坐标
             let option = this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option;
-            option.series[data.index].itemStyle.color.x = data.value;
-            this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option);
-        },
-        set_bar_gradient_x2(context,data){//设置渐变x2
-            let option = this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option;
-            option.series[data.index].itemStyle.color.x2 = data.value;
-            this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option);
-        },
-        set_bar_gradient_y(context,data){//设置渐变y
-            let option = this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option;
-            option.series[data.index].itemStyle.color.y = data.value;
-            this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option);
-        },
-        set_bar_gradient_y2(context,data){//设置渐变y2
-            let option = this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option;
-            option.series[data.index].itemStyle.color.y2 = data.value;
+            let _type =  data.type;//获取传入的type
+            if(option.series && option.series[data.index].hasOwnProperty("itemStyle")){
+                if(option.series[data.index].itemStyle.hasOwnProperty("color")){
+                    option.series[data.index].itemStyle.color[_type] = data.value;
+                }else{//没有color
+                    option.series[data.index].itemStyle.color={_type:data.value};
+                }
+            }else{//没有itemStyle
+                console.log('_type',_type);
+                option.series[data.index].itemStyle = {color:{}};
+                option.series[data.index].itemStyle.color[_type] = data.value;
+            }
             this.state.common.echarts_option[this.state.common.cur_chart_index].echart_option = Object.assign({},option);
         },
         add_bar_gradient(context,index){//添加渐变项

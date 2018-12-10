@@ -509,14 +509,14 @@
                         padding:10px 0;
                         display: flex;
                         align-items: center;
-                        justify-content: space-between;
-                        /*justify-content: flex-start;*/
+                        /*justify-content: space-between;*/
+                        justify-content: flex-start;
 
                     }
                     .create-data{
-                        /*position:absolute;*/
-                        /*right:1px;*/
-                        /*top:0;*/
+                        position:absolute;
+                        right:1px;
+                        top:9px;
                         cursor: pointer;
                     }
                     .create-data:hover,go-back:hover,.bold:hover{
@@ -533,7 +533,7 @@
                 .ivu-collapse-item{
                     box-shadow: inset 0 -1px 0 0 rgba(81,130,228,.2);
                     .ivu-collapse-content{
-                        padding:0 36px 15px;
+                        padding:0 36px 12px;
                         padding-right:15px;
                         .ivu-collapse-content-box{
                             padding: 0;

@@ -168,6 +168,10 @@ export const symbolType = [
         value:'none'
     },
     {
+         label:'空心圆',
+         value:'emptyCircle'
+    },
+    {
         label:'圆形',
         value:'circle'
     },

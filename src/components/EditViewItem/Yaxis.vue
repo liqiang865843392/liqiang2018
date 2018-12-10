@@ -12,7 +12,7 @@
                      <TextInput class="p-10" title="最大值" type='number' width="132" auto placeholder="" @onchange="yAxis_max" :value="get_yAxis_max"></TextInput>
                      <TextInput class="p-10" title="最小值" type='number' width="132" auto  placeholder="" @onchange="yAxis_min" :value="get_yAxis_min"></TextInput>
                  </div>
-                 <div slot="two">
+                 <div slot="two" v-if="swiper_show">
                      <div style="margin-left: -18px;margin-right:-7px;margin-top: -8px;">
                          <Tooltip  :transfer=true content="返回" placement="left" class="go-back" >
                              <Icon type="ios-arrow-forward"  size="20" @click="go_back"/>
@@ -51,9 +51,6 @@
 
       },
       computed:{
-          get_is_current(){//只显示当前swiper (避免显示出现异常)
-              // return (this.yAxis_swiper && this.yAxis_swiper.activeIndex == 1) ? true : false;
-          },
           get_yAxis_data(){//获取Y轴数据传入数据显示组件
               let yAxis_data = this.$store.state.common.echarts_option[this.$store.state.common.cur_chart_index].echart_option.yAxis.data;
               console.log(99999,yAxis_data);
@@ -99,6 +96,7 @@
       },
       data(){
             return {
+                swiper_show:false
             }
       },
       mounted(){
@@ -106,10 +104,13 @@
       },
       methods:{
           add_data(){//点击了编辑数据按钮
+              // console.log(777,this.$refs.data_swiper);
               this.$refs.data_swiper.change_slide(1);
+              this.swiper_show = true;
           },
           go_back(){//返回
               this.$refs.data_swiper.change_slide(0);
+              this.swiper_show = false;//切换到第0页的时候 隐藏第1页（不然切换到开发者模式会显示）
           },
           edit_yAxis_data(data){//修改X轴数据
               this.$store.dispatch('edit_yAxis_data',data);

@@ -38,7 +38,7 @@
               centeredSlides: true,
               observer:true,
               observeParents:true,
-              spaceBetween:43
+              spaceBetween:53
           })
       },
       methods:{
@@ -51,7 +51,7 @@
     }
 </script>
 <style  lang="scss">
-
+    .swiper-container::-webkit-scrollbar {display:none}
 </style>
 
 

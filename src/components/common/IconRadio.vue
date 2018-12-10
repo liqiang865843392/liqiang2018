@@ -1,5 +1,5 @@
 <template>
-    <div class="icon-radio" :class="{'selected':this.state == true}"  @click = "state = !state" >
+    <div class="icon-radio" :class="{'selected':get_value}"  @click = "_clicked" >
         <Tooltip  :transfer=true :content="tooltip" placement="top" class="bold" >
             <Icon  :type="icon" size="22"/>
         </Tooltip>
@@ -13,17 +13,22 @@
           },
           tooltip:{
 
+          },
+          value:{
+              type:Boolean,
+              default:false
           }
       },
       created(){
 
       },
       computed:{
-
+          get_value(){
+               return  this.value;
+          },
       },
       data(){
             return {
-                state:false
             }
       },
       mounted(){
@@ -31,7 +36,7 @@
       },
       methods:{
           _clicked(){
-
+              this.$emit('onchange',this.value ? 'bold' : 'normal');
           }
       },
       components:{

@@ -20,7 +20,7 @@
                     <ChooseColor iconType="font-icon" @onchange="legend_color" tooltip="字体色" :value="get_legend_color"></ChooseColor>
                 </div>
             </div>
-            <div slot="two">
+            <div slot="two" v-if="swiper_show">
                 <div style="margin-left: -18px;margin-right:-7px;margin-top: -8px;">
                     <Tooltip  :transfer=true content="返回" placement="left" class="go-back" >
                         <Icon type="ios-arrow-forward"  size="20" @click="go_back"/>
@@ -106,7 +106,8 @@
       },
       data(){
             return {
-                show:true
+                show:true,
+                swiper_show:false
             }
       },
       mounted(){
@@ -115,9 +116,11 @@
       methods:{
           add_data(){//点击了添加数据按钮
               this.$refs.data_swiper.change_slide(1);
+              this.swiper_show = true;
           },
           go_back(){//返回
               this.$refs.data_swiper.change_slide(0);
+              this.swiper_show = false;//切换到第0页的时候 隐藏第1页（不然切换到开发者模式会显示）
           },
           edit_legend_data(data){//修改图例数据
               this.$store.dispatch('edit_legend_data',data);
