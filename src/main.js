@@ -6,9 +6,7 @@ import './plugins/iview.js'
 import './plugins/custom_module.js'
 import './directive'//引入指令文件
 import Icon from 'vue-svg-icon/Icon.vue' //使用svg图标用到的插件
-
 import 'swiper/dist/css/swiper.min.css'
-
 Vue.component('icon',Icon); //注册
 Vue.config.productionTip = false;
 router.beforeEach((to, from, next) => {

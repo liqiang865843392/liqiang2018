@@ -1,6 +1,5 @@
 <template>
     <div class="layout">
-        <GooeyMenu></GooeyMenu>
         <Layout style="height:100%;">
             <Content :style="{ background: '#fff',height:contentHeight}">
                 <div v-if="!this.$route.query.id" class="change_template"  @click="release">
@@ -46,7 +45,6 @@
     import LayoutTwo from '@/components/layout/layout-two';
     import LayoutThree from '@/components/layout/layout-three';
     import Echarts from '@/components/common/Echarts';
-    import GooeyMenu from '@/components/common/GooeyMenu.vue';
 
     import Swiper from 'swiper'
 
@@ -117,7 +115,7 @@
           }
       },
       components:{
-          LayoutOne,LayoutTwo,LayoutThree,Echarts,GooeyMenu
+          LayoutOne,LayoutTwo,LayoutThree,Echarts
       }
     }
 </script>
