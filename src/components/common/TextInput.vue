@@ -41,7 +41,7 @@
           },
           max:{//数字框最大值
               type:Number,
-              default:999
+              default:9999
           },
           type:{
               type:String,
@@ -128,6 +128,9 @@
  }
  /*数字选择上下箭头*/
  .ivu-input-number-handler-wrap{
+     position: absolute;
+     z-index: 2;
+     top: -2px;
      width:19px!important;
      border-left:none!important;
      background:none!important;
@@ -149,7 +152,7 @@
  .ivu-input-number input{
      background-color: transparent!important;
      position: absolute;
-     z-index: -1;
+     /*z-index: -1;*/
      top: 1px;
  }
  .ivu-input-number-input{

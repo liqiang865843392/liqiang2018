@@ -691,27 +691,42 @@ export const pie_option = {
                 }
             },
             name: "数据",
-            color : ['#FAFF00', '#FFCD20', '#6AC859', '#329587','#1A66FF','#0096FF'],
             data: [
                 {
-                    "name": "第一种",
-                    "value": 1895457
+                    name: "第一种",
+                    value: 5895,
+                    itemStyle:{
+                        color:'#FAFF00'
+                    }
+
                 },
                 {
-                    "name": "第二种",
-                    "value": 722232
+                    name: "第二种",
+                    value: 5222,
+                    itemStyle:{
+                        color:'#FFCD20'
+                    }
                 },
                 {
-                    "name": "第三种",
-                    "value": 1723130
+                    name: "第三种",
+                    value: 5723,
+                    itemStyle:{
+                        color:'#6AC859'
+                    }
                 },
                 {
-                    "name": "第四种",
-                    "value": 854920
+                    name: "第四种",
+                    value: 6549,
+                    itemStyle:{
+                        color:'#329587'
+                    }
                 },
                 {
-                    "name": "第五种",
-                    "value": 854920
+                    name: "第五种",
+                    value: 7549,
+                    itemStyle:{
+                        color:'#0096FF'
+                    }
                 }
             ],
 

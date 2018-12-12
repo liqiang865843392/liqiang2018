@@ -9,6 +9,7 @@ import xAxis_store from './xAxis_store.js';//引入x轴store
 import yAxis_store from './yAxis_store.js';//引入y轴store
 import developer_store from './developer_store.js';//引入开发者模式(编辑器)store
 
+import series_common from './series/series_common_store.js';//引入series公用store
 import bar_store from './series/bar_store.js';//引入柱状图store
 import line_store from './series/line_store.js';//引入柱状图store
 import pie_store from './series/pie_store.js';//引入饼状图store
@@ -21,6 +22,7 @@ export default new vuex.Store({
       yAxis:  yAxis_store,
       title:  title_store,
       developer:  developer_store,
+      series_common:  series_common,
       bar_store:  bar_store,
       line_store:  line_store,
       pie_store:  pie_store,

@@ -131,22 +131,22 @@
           },
           set_bar_gradient_grid(type,val){//修改渐变坐标
               let data = {type:type,value:val,index:this.index};
-              this.$store.dispatch('set_bar_gradient_grid',data);
+              this.$store.dispatch('set_gradient_grid',data);
           },
           add_gradient(){//添加渐变项
-              this.$store.dispatch('add_bar_gradient', this.index);
+              this.$store.dispatch('add_gradient', this.index);
           },
           set_gradient_color(g_index,val){//修改渐变色
               let data = {value:val,series_index:this.index,g_index:g_index};
-              this.$store.dispatch('set_bar_gradient_color', data);
+              this.$store.dispatch('set_gradient_color', data);
           },
           set_gradient_position(g_index,val){//修改渐变位置
               let data = {value:val,series_index:this.index,g_index:g_index};
-              this.$store.dispatch('set_bar_gradient_position', data);
+              this.$store.dispatch('set_gradient_position', data);
           },
           remove_gradient(g_index){//删除渐变
               let data = {series_index:this.index,g_index:g_index};
-              this.$store.dispatch('remove_bar_gradient',data);
+              this.$store.dispatch('remove_gradient',data);
           }
       },
       components:{

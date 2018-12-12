@@ -4,16 +4,16 @@
         <div class="item-option">
             <div class="option-item" style="justify-content:space-between!important;margin-top:5px;">
                 <span class="title-label" style="width:40px;color:rgba(45, 140, 240,.7) !important">图形组</span>
-                <Tooltip  :transfer=true content="添加渐变" placement="top" class="" offset="">
+                <Tooltip  :transfer=true content="添加数据项" placement="top" class="" offset="">
                     <Icon type="ios-add-circle" size="20" class="add-item" @click="add_item"/>
                 </Tooltip>
             </div>
             <div class="option-item item" style="" v-for="(item,index) in get_items">
-                <InputNumber></InputNumber>
                 <span class="title-label" style="">数据:&nbsp;&nbsp;</span>
-                <TextInput class=""  title="" type='number'  width="50" style="margin-right:12px;" :step="1" textIndent="5"   placeholder="" @onchange="" value=""></TextInput>
-                <span class="title-label" style="">颜色:&nbsp;&nbsp;</span>
-                <ChooseColor class="" tooltip="颜色" iconType="font-icon" @onchange="" value=""></ChooseColor>
+                <TextInput class=""  title=""   width="50" style="margin-right:3px;"  textIndent="5"   placeholder="" @onchange="set_item_name(index,$event)" :value="item.name"></TextInput>
+                <span class="title-label" style="">值:&nbsp;&nbsp;</span>
+                <TextInput class=""  title="" type='number'  width="50" style="margin-right:3px;" :step="1" textIndent="5"   placeholder="" @onchange="set_item_val(index,$event)" :value="item.value"></TextInput>
+                <ChooseColor class="" tooltip="颜色" iconType="font-icon" @onchange="set_item_color(index,$event)" :value="item.itemStyle.color"></ChooseColor>
                 <Tooltip  :transfer=true content="删除" placement="top" class="remove" offset="">
                     <Icon type="ios-close-circle" size="20" @click="remove_item(index)"/>
                 </Tooltip>
@@ -51,31 +51,28 @@
 
       },
       methods:{
-          set_color_type(val){//修改颜色选择类别
-              this.colorType = val;
-          },
           set_once_color(val){//设置单色
               let data = {value:val,index:this.index};
               this.$store.dispatch('set_once_color',data);
           },
-          set_bar_item_grid(type,val){//修改渐变坐标
-              let data = {type:type,value:val,index:this.index};
-              this.$store.dispatch('set_bar_item_grid',data);
+          add_item(){//添加item
+              this.$store.dispatch('add_item', this.index);
           },
-          add_item(){//添加渐变项
-              this.$store.dispatch('add_bar_item', this.index);
+          set_item_name(item_index,val){//修改item name
+              let data = {value:val,series_index:this.index,item_index:item_index};
+              this.$store.dispatch('set_item_name', data);
           },
-          set_item_color(g_index,val){//修改渐变色
-              let data = {value:val,series_index:this.index,g_index:g_index};
-              this.$store.dispatch('set_bar_item_color', data);
+          set_item_val(item_index,val){//修改item val
+              let data = {value:val,series_index:this.index,item_index:item_index};
+              this.$store.dispatch('set_item_val', data);
           },
-          set_item_position(g_index,val){//修改渐变位置
-              let data = {value:val,series_index:this.index,g_index:g_index};
-              this.$store.dispatch('set_bar_item_position', data);
+          set_item_color(item_index,val){//修改item color
+              let data = {value:val,series_index:this.index,item_index:item_index};
+              this.$store.dispatch('set_item_color', data);
           },
-          remove_item(g_index){//删除渐变
-              let data = {series_index:this.index,g_index:g_index};
-              this.$store.dispatch('remove_bar_item',data);
+          remove_item(item_index){//删除item
+              let data = {series_index:this.index,item_index:item_index};
+              this.$store.dispatch('remove_item',data);
           }
       },
       components:{
