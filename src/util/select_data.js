@@ -240,6 +240,10 @@ export const inside_radius = [
         label:'60%',
         value:'60%'
     },
+    {
+        label:'75%',
+        value:'75%'
+    },
 ];
 
 export const outer_radius = [
@@ -280,8 +284,8 @@ export const outer_radius = [
         value:'60%'
     },
     {
-        label:'70%',
-        value:'70%'
+        label:'75%',
+        value:'75%'
     },
     {
         label:'80%',

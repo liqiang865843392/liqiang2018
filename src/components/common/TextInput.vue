@@ -4,7 +4,7 @@
                 <Tooltip   v-if="iconType" :transfer=true :content="tooltip" placement="top" offset="-2">
                         <i class="icon" :class="setClass" ></i>
                 </Tooltip>
-                <InputNumber  v-if="type == 'number'" v-model="get_number_value"   :max=max  :min=min :step=step :disabled="disabled" :style="{width:get_width,textIndent:get_indent}"></InputNumber>
+                <InputNumber  v-if="type == 'number'" v-model="get_number_value"   :max=max  :min=min :step=step :disabled="disabled" :editable="true" :style="{width:get_width,textIndent:get_indent}"></InputNumber>
                 <span v-if="auto">
                       <Checkbox   v-if="type == 'number'"  style="font-weight: normal!important;margin-left: 15px;" v-model="get_checkbox">自动</Checkbox>
                 </span>

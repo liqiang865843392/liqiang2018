@@ -613,70 +613,6 @@ export const bar_option_1 = {
     animation: true
 }
 //饼状图
-function deepCopy(obj) {
-    if (typeof obj !== 'object') {
-        return obj;
-    }
-    var newobj = {};
-    for (var attr in obj) {
-        newobj[attr] = obj[attr];
-    }
-    return newobj;
-}
-var xData = [],
-    yData = [];
-
-var data = [
-    {
-        "name": "第一种",
-        "value": 1895457
-    },
-    {
-        "name": "第二种",
-        "value": 722232
-    },
-    {
-        "name": "第三种",
-        "value": 1723130
-    },
-    {
-        "name": "第四种",
-        "value": 854920
-    },
-    {
-        "name": "第五种",
-        "value": 854920
-    }
-    ]
-data.map((a, b) => {
-    xData.push(a.name);
-    yData.push(a.value);
-});
-var color = ['#FAFF00', '#FFCD20', '#6AC859', '#329587','#1A66FF','#0096FF'];
-var borderStartColor = ['#05acff', '#ee36ff', '#05fcfb', '#ffa597'];
-var borderEndColor = ['#09c1ff', '#8171ff', '#05ffff', '#ff6584'];
-var RealData = [];
-var borderData = [];
-data.map((item, index) => {
-    var newobj = deepCopy(item);
-    var newobj1 = deepCopy(item);
-    RealData.push(newobj);
-    borderData.push(newobj1);
-});
-RealData.map((item, index) => {
-    item.itemStyle = {
-        normal: {
-            color: color[index]
-        }
-    }
-});
-borderData.map((item, index) => {
-    item.itemStyle = {
-        normal: {
-            color:color[index]
-        }
-    }
-});
 export const pie_option = {
     // backgroundColor:"rgb(3,39,34)",
     legend: {
@@ -743,23 +679,41 @@ export const pie_option = {
             center: ['50%', '50%'],
             type: 'pie',
             label: {
-                normal: {
-                    show: false
-                },
+                show: false,
                 emphasis: {
                     show: false
                 }
             },
             labelLine: {
-                normal: {
-                    show: false
-                },
+                show: false,
                 emphasis: {
                     show: false
                 }
             },
             name: "数据",
-            data: RealData,
+            color : ['#FAFF00', '#FFCD20', '#6AC859', '#329587','#1A66FF','#0096FF'],
+            data: [
+                {
+                    "name": "第一种",
+                    "value": 1895457
+                },
+                {
+                    "name": "第二种",
+                    "value": 722232
+                },
+                {
+                    "name": "第三种",
+                    "value": 1723130
+                },
+                {
+                    "name": "第四种",
+                    "value": 854920
+                },
+                {
+                    "name": "第五种",
+                    "value": 854920
+                }
+            ],
 
         },
 

@@ -63,7 +63,6 @@
       methods:{
           on_change(val){
               this.$emit('onchange',val);
-              // console.log(223,val);
           }
       }
     }
