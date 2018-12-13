@@ -9,7 +9,7 @@
                 <td>该图表暂无图例配置项</td>
             </tr>
             <tr class="tbody" v-for="(item,index) in get_table_data" :key="index">
-                <td @dblclick="_edit(item,index)">
+                <td @dblclick="_edit(item,index)" v-for="(child,index) in item">
                     <!--<Input v-if="item.is_input" @on-blur="onblur(index,$event)"/>-->
                     <input  type="text" v-focus :value=item.name  v-if="item.is_input" @blur = "onblur(item,$event)">
                     <span v-else>{{item.name}}</span>
