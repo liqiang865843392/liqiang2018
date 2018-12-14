@@ -60,6 +60,9 @@ export default {
  .mr10{
    margin-right:10px;
  }
+  .mr7{
+    margin-right:7px;
+  }
   /*修改swiper样式*/
   .swiper-container{
      overflow: inherit!important;

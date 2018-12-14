@@ -5,11 +5,14 @@
                 <td v-if="title">{{title}}</td>
                 <td v-else v-for="(item,index) in get_thead_data">{{item}}</td>
             </tr>
-            <tr v-if="this.cur_table_data.length <= 0">
-                <td>该图表暂无图例配置项</td>
+            <tr v-if="content">
+                <td>{{content}}</td>
             </tr>
-            <tr class="tbody" v-for="(item,index) in get_table_data" :key="index">
-                <td @dblclick="_edit(item,index)" v-for="(child,index) in item">
+            <tr v-else-if="this.cur_table_data.length <= 0">
+                <td>该图表组件暂无配置项</td>
+            </tr>
+            <tr  class="tbody" v-for="(item,index) in get_table_data" :key="index">
+                <td @dblclick="_edit(item,index)">
                     <!--<Input v-if="item.is_input" @on-blur="onblur(index,$event)"/>-->
                     <input  type="text" v-focus :value=item.name  v-if="item.is_input" @blur = "onblur(item,$event)">
                     <span v-else>{{item.name}}</span>
@@ -33,6 +36,9 @@
             table_data:{ //表格数据
 
             },
+            content:{//传入的固定表格内容
+
+            }
         },
         created(){
         },
@@ -68,7 +74,7 @@
                 let _data = [];
                 if(type == 'handle'){//处理数据 (用于修改数据：动态显示input)
                     this.cur_table_data =  this.table_data;
-                    this.table_data.forEach((item,index)=>{
+                    this.table_data&& this.table_data.forEach((item,index)=>{
                         _data.push({name:item,is_input:false});
                     });
                     this.cur_table_data = _data;

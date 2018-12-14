@@ -13,6 +13,7 @@ import series_common from './series/series_common_store.js';//引入series公用
 import bar_store from './series/bar_store.js';//引入柱状图store
 import line_store from './series/line_store.js';//引入柱状图store
 import pie_store from './series/pie_store.js';//引入饼状图store
+import scatter_store from './series/scatter_store.js';//引入散点图store
 
 export default new vuex.Store({
   modules: {
@@ -26,5 +27,6 @@ export default new vuex.Store({
       bar_store:  bar_store,
       line_store:  line_store,
       pie_store:  pie_store,
+      scatter_store:  scatter_store,
   }
 })

@@ -13,7 +13,7 @@
                 <TextInput class=""  title=""   width="50" style="margin-right:3px;"  textIndent="5"   placeholder="" @onchange="set_item_name(index,$event)" :value="item.name"></TextInput>
                 <span class="title-label" style="">值:&nbsp;&nbsp;</span>
                 <TextInput class=""  title="" type='number'  width="50" style="margin-right:3px;" :step="1" textIndent="5"   placeholder="" @onchange="set_item_val(index,$event)" :value="item.value"></TextInput>
-                <ChooseColor class="" tooltip="颜色" iconType="font-icon" @onchange="set_item_color(index,$event)" :value="item.itemStyle.color"></ChooseColor>
+                <ChooseColor v-if="color" class="" tooltip="颜色" iconType="font-icon" @onchange="set_item_color(index,$event)" :value="item.itemStyle.color"></ChooseColor>
                 <Tooltip  :transfer=true content="删除" placement="top" class="remove" offset="">
                     <Icon type="ios-close-circle" size="20" @click="remove_item(index)"/>
                 </Tooltip>
@@ -27,7 +27,11 @@
           index:{//第几个series
             type:Number,
             default:0
-          }
+          },
+          color:{
+              type:Boolean,
+              default:false
+          },
       },
       created(){
 
@@ -44,17 +48,12 @@
       },
       data(){
             return {
-                colorType:'once',//颜色选择类型  默认为单色
             }
       },
       mounted(){
 
       },
       methods:{
-          set_once_color(val){//设置单色
-              let data = {value:val,index:this.index};
-              this.$store.dispatch('set_once_color',data);
-          },
           add_item(){//添加item
               this.$store.dispatch('add_item', this.index);
           },
